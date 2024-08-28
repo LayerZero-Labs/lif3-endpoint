@@ -2,16 +2,12 @@
 
 pragma solidity 0.7.6;
 
-import "@openzeppelin/contracts/token/ERC20/IERC20.sol";
-import "@openzeppelin/contracts/token/ERC20/SafeERC20.sol";
-import "@openzeppelin/contracts/access/Ownable.sol";
-import "@openzeppelin/contracts/math/SafeMath.sol";
-
 import "./interfaces/ILayerZeroTreasury.sol";
-import "./interfaces/ILayerZeroUltraLightNodeV2.sol";
+import "@openzeppelin/contracts/access/Ownable.sol";
+import "@openzeppelin/contracts/utils/math/SafeMath.sol";
+import "./interfaces/ILayerZeroUltraLightNodeV1.sol";
 
-contract TreasuryV2 is ILayerZeroTreasury, Ownable {
-    using SafeERC20 for IERC20;
+contract Treasury is ILayerZeroTreasury, Ownable {
     using SafeMath for uint;
 
     uint public nativeBP;
@@ -19,15 +15,15 @@ contract TreasuryV2 is ILayerZeroTreasury, Ownable {
     bool public feeEnabled;
     bool public zroEnabled;
 
-    ILayerZeroUltraLightNodeV2 public uln;
+    ILayerZeroUltraLightNodeV1 public immutable uln;
 
     event NativeBP(uint bp);
     event ZroFee(uint zroFee);
     event FeeEnabled(bool feeEnabled);
     event ZroEnabled(bool zroEnabled);
 
-    constructor(address _ulnv2) {
-        uln = ILayerZeroUltraLightNodeV2(_ulnv2);
+    constructor(address _uln) {
+        uln = ILayerZeroUltraLightNodeV1(_uln);
     }
 
     function getFees(bool payInZro, uint relayerFee, uint oracleFee) external view override returns (uint) {
@@ -62,15 +58,13 @@ contract TreasuryV2 is ILayerZeroTreasury, Ownable {
         emit ZroFee(_zroFee);
     }
 
+    //    uint8 public constant WITHDRAW_TYPE_TREASURY_PROTOCOL_FEES = 0;
     function withdrawZROFromULN(address _to, uint _amount) external onlyOwner {
         uln.withdrawZRO(_to, _amount);
     }
 
+    //    uint8 public constant WITHDRAW_TYPE_TREASURY_PROTOCOL_FEES = 0;
     function withdrawNativeFromULN(address payable _to, uint _amount) external onlyOwner {
-        uln.withdrawNative(_to, _amount);
-    }
-
-    function withdrawToken(address _token, address _to, uint _amount) external onlyOwner {
-        IERC20(_token).safeTransfer(_to, _amount);
+        uln.withdrawNative(0, address(0x0), _to, _amount);
     }
 }

@@ -4,7 +4,7 @@ pragma solidity 0.7.6;
 pragma abicoder v2;
 
 import "@openzeppelin/contracts/access/Ownable.sol";
-import "@openzeppelin/contracts/math/SafeMath.sol";
+import "@openzeppelin/contracts/utils/math/SafeMath.sol";
 import "@openzeppelin/contracts/utils/ReentrancyGuard.sol";
 import "@openzeppelin/contracts/token/ERC20/IERC20.sol";
 import "@openzeppelin/contracts/token/ERC20/SafeERC20.sol";
@@ -18,9 +18,15 @@ import "./interfaces/ILayerZeroMessagingLibraryV2.sol";
 import "./interfaces/ILayerZeroOracleV2.sol";
 import "./interfaces/ILayerZeroUltraLightNodeV2.sol";
 import "./interfaces/ILayerZeroRelayerV2.sol";
+import "./FeeHandler.sol";
 import "./NonceContract.sol";
 
-contract UltraLightNodeV2 is ILayerZeroMessagingLibraryV2, ILayerZeroUltraLightNodeV2, ReentrancyGuard, Ownable {
+contract UltraLightNodeV2AltToken is
+    ILayerZeroMessagingLibraryV2,
+    ILayerZeroUltraLightNodeV2,
+    ReentrancyGuard,
+    Ownable
+{
     using SafeERC20 for IERC20;
     using SafeMath for uint;
 
@@ -55,14 +61,16 @@ contract UltraLightNodeV2 is ILayerZeroMessagingLibraryV2, ILayerZeroUltraLightN
     ILayerZeroEndpoint public immutable endpoint;
     uint16 public immutable localChainId;
     NonceContract public immutable nonceContract;
+    FeeHandler public immutable feeHandler;
 
-    constructor(address _endpoint, address _nonceContract, uint16 _localChainId) {
+    constructor(address _endpoint, address _nonceContract, uint16 _localChainId, address _feeHandler) {
         require(_endpoint != address(0x0), "LayerZero: endpoint cannot be zero address");
         require(_nonceContract != address(0x0), "LayerZero: nonceContract cannot be zero address");
         ILayerZeroEndpoint lzEndpoint = ILayerZeroEndpoint(_endpoint);
         localChainId = _localChainId;
         endpoint = lzEndpoint;
         nonceContract = NonceContract(_nonceContract);
+        feeHandler = FeeHandler(_feeHandler);
     }
 
     // only the endpoint can call SEND() and setConfig()
@@ -180,21 +188,17 @@ contract UltraLightNodeV2 is ILayerZeroMessagingLibraryV2, ILayerZeroUltraLightN
         ApplicationConfiguration memory uaConfig = _getAppConfig(dstChainId, ua);
 
         // compute all the fees
-        uint relayerFee = _handleRelayer(dstChainId, uaConfig, ua, payload.length, _adapterParams);
-        uint oracleFee = _handleOracle(dstChainId, uaConfig, ua);
-        uint nativeProtocolFee = _handleProtocolFee(relayerFee, oracleFee, ua, _zroPaymentAddress);
+        uint[] memory fees = new uint[](3);
+        fees[0] = _handleRelayer(dstChainId, uaConfig, ua, payload.length, _adapterParams);
+        fees[1] = _handleOracle(dstChainId, uaConfig, ua);
+        fees[2] = _handleProtocolFee(fees[0], fees[1], ua, _zroPaymentAddress);
 
-        // total native fee, does not include ZRO protocol fee
-        uint totalNativeFee = relayerFee.add(oracleFee).add(nativeProtocolFee);
+        address[] memory receivers = new address[](3);
+        receivers[0] = uaConfig.relayer;
+        receivers[1] = uaConfig.oracle;
+        receivers[2] = address(treasuryContract);
 
-        // assert the user has attached enough native token for this address
-        require(totalNativeFee <= msg.value, "LayerZero: not enough native for fees");
-        // refund if they send too much
-        uint amount = msg.value.sub(totalNativeFee);
-        if (amount > 0) {
-            (bool success, ) = _refundAddress.call{value: amount}("");
-            require(success, "LayerZero: failed to refund");
-        }
+        feeHandler.creditFee(receivers, fees, _refundAddress);
 
         // emit the data packet
         bytes memory encodedPayload = abi.encodePacked(nonce, localChainId, ua, dstChainId, dstAddress, payload);
@@ -215,8 +219,6 @@ contract UltraLightNodeV2 is ILayerZeroMessagingLibraryV2, ILayerZeroUltraLightN
         ILayerZeroRelayerV2 relayer = ILayerZeroRelayerV2(relayerAddress);
         relayerFee = relayer.assignJob(_dstChainId, _uaConfig.outboundProofType, _ua, _payloadSize, _adapterParams);
 
-        _creditNativeFee(relayerAddress, relayerFee);
-
         // emit the param events
         emit RelayerParams(_adapterParams, _uaConfig.outboundProofType);
     }
@@ -233,8 +235,6 @@ contract UltraLightNodeV2 is ILayerZeroMessagingLibraryV2, ILayerZeroUltraLightN
             _uaConfig.outboundBlockConfirmations,
             _ua
         );
-
-        _creditNativeFee(oracleAddress, oracleFee);
     }
 
     function _handleProtocolFee(
@@ -250,7 +250,6 @@ contract UltraLightNodeV2 is ILayerZeroMessagingLibraryV2, ILayerZeroUltraLightN
         if (protocolFee > 0) {
             if (payInNative) {
                 address treasuryAddress = address(treasuryContract);
-                _creditNativeFee(treasuryAddress, protocolFee);
                 protocolNativeFee = protocolFee;
             } else {
                 // zro payment address must equal the ua or the tx.origin otherwise the transaction reverts
@@ -265,10 +264,6 @@ contract UltraLightNodeV2 is ILayerZeroMessagingLibraryV2, ILayerZeroUltraLightN
                 treasuryZROFees = treasuryZROFees.add(protocolFee);
             }
         }
-    }
-
-    function _creditNativeFee(address _receiver, uint _amount) internal {
-        nativeFees[_receiver] = nativeFees[_receiver].add(_amount);
     }
 
     // Can be called by any address to update a block header

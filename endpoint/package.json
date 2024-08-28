@@ -1,73 +1,121 @@
 {
-  "name": "@layerzerolabs/oapp-example",
-  "version": "0.2.13",
-  "private": true,
-  "license": "MIT",
-  "scripts": {
-    "clean": "rm -rf artifacts cache out",
-    "compile": "$npm_execpath run compile:forge && $npm_execpath run compile:hardhat",
-    "compile:forge": "forge build",
-    "compile:hardhat": "hardhat compile",
-    "lint": "$npm_execpath run lint:js && $npm_execpath run lint:sol",
-    "lint:fix": "eslint --fix '**/*.{js,ts,json}' && prettier --write . && solhint 'contracts/**/*.sol' --fix --noPrompt",
-    "lint:js": "eslint '**/*.{js,ts,json}' && prettier --check .",
-    "lint:sol": "solhint 'contracts/**/*.sol'",
-    "test": "$npm_execpath run test:forge && $npm_execpath run test:hardhat",
-    "test:forge": "forge test",
-    "test:hardhat": "hardhat test"
-  },
-  "resolutions": {
-    "ethers": "^5.7.2",
-    "hardhat-deploy": "^0.12.1"
-  },
-  "devDependencies": {
-    "@babel/core": "^7.23.9",
-    "@layerzerolabs/eslint-config-next": "~2.3.34",
-    "@layerzerolabs/lz-definitions": "^2.3.34",
-    "@layerzerolabs/lz-evm-messagelib-v2": "^2.3.34",
-    "@layerzerolabs/lz-evm-protocol-v2": "^2.3.34",
-    "@layerzerolabs/lz-evm-v1-0.7": "^2.3.34",
-    "@layerzerolabs/lz-v2-utilities": "^2.3.34",
-    "@layerzerolabs/oapp-evm": "^0.0.3",
-    "@layerzerolabs/prettier-config-next": "^2.3.34",
-    "@layerzerolabs/solhint-config": "^2.3.34",
-    "@layerzerolabs/test-devtools-evm-foundry": "~0.2.11",
-    "@layerzerolabs/toolbox-foundry": "~0.1.9",
-    "@layerzerolabs/toolbox-hardhat": "~0.3.6",
-    "@nomicfoundation/hardhat-ethers": "^3.0.5",
-    "@nomiclabs/hardhat-ethers": "^2.2.3",
-    "@openzeppelin/contracts": "^5.0.2",
-    "@openzeppelin/contracts-upgradeable": "^5.0.2",
-    "@rushstack/eslint-patch": "^1.7.0",
-    "@types/chai": "^4.3.11",
-    "@types/mocha": "^10.0.6",
-    "@types/node": "~18.18.14",
-    "chai": "^4.4.1",
-    "dotenv": "^16.4.1",
-    "eslint": "^8.55.0",
-    "eslint-plugin-jest-extended": "~2.0.0",
-    "ethers": "^5.7.2",
-    "hardhat": "^2.22.3",
-    "hardhat-contract-sizer": "^2.10.0",
-    "hardhat-deploy": "^0.12.1",
-    "mocha": "^10.2.0",
-    "prettier": "^3.2.5",
-    "solhint": "^4.1.1",
-    "solidity-bytes-utils": "^0.8.2",
-    "ts-node": "^10.9.2",
-    "typescript": "^5.4.4"
-  },
-  "engines": {
-    "node": ">=18.16.0"
-  },
-  "pnpm": {
-    "overrides": {
-      "ethers": "^5.7.2",
-      "hardhat-deploy": "^0.12.1"
+  "name": "@layerzerolabs/lz-evm-v1-0.7",
+  "version": "2.3.38",
+  "license": "BUSL-1.1",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.mjs",
+      "require": "./dist/index.cjs"
+    },
+    "./ops": {
+      "types": "./dist/ops.d.ts",
+      "import": "./dist/ops.mjs",
+      "require": "./dist/ops.cjs"
+    },
+    "./package.json": "./package.json",
+    "./contracts/*": "./contracts/*",
+    "./artifacts/*": "./artifacts/*",
+    "./utils/*": {
+      "import": "./utils/*.js",
+      "require": "./utils/*.js"
     }
   },
-  "overrides": {
+  "main": "./dist/index.cjs",
+  "types": "./dist/index.d.ts",
+  "files": [
+    "./dist/**/*",
+    "contracts/interfaces/**/*",
+    "contracts/precrime/interfaces/**/*",
+    "contracts/precrime/PreCrimeBase.sol",
+    "contracts/precrime/PreCrimeView.sol"
+  ],
+  "scripts": {
+    "build": "$npm_execpath clean-prebuild && $npm_execpath build-forge && $npm_execpath build-hardhat && $npm_execpath build-tron && $npm_execpath build-ts",
+    "build-forge": "forge build",
+    "build-hardhat": "$npm_execpath hardhat compile",
+    "build-tron": "$npm_execpath hardhat compile --network tron-sandbox-local --no-copy-artifacts --no-copy-deployments",
+    "build-ts": "$npm_execpath tsc --noEmit && $npm_execpath tsup --entry.index ./src/index.ts && $npm_execpath tsup-node --entry.ops ./ops/index.ts",
+    "clean": "$npm_execpath clean-prebuild && rimraf .turbo src/typechain-types out && $npm_execpath clean-hardhat",
+    "clean-hardhat": "rimraf -g '*artifacts*' '*cache*'",
+    "clean-prebuild": "rimraf dist",
+    "prepack": "node ./scripts/pack.mjs --prepack",
+    "postpack": "node ./scripts/pack.mjs --postpack",
+    "test": "$npm_execpath test-forge && $npm_execpath hardhat test --parallel",
+    "test-forge": "forge test"
+  },
+  "resolutions": {
+    "@nomiclabs/hardhat-ethers": "npm:hardhat-deploy-ethers@^0.3.0-beta.13"
+  },
+  "dependencies": {
+    "abi-decoder": "^2.4.0",
+    "dotenv": "^16.3.1",
     "ethers": "^5.7.2",
-    "hardhat-deploy": "^0.12.1"
+    "lodash": "^4.17.21",
+    "pino": "^8.16.2",
+    "tiny-invariant": "^1.3.1",
+    "zksync-ethers": "^5.0.0",
+    "zksync-web3": "^0.14.3"
+  },
+  "devDependencies": {
+    "@ethersproject/abi": "^5.7.0",
+    "@ethersproject/providers": "^5.7.0",
+    "@layerzerolabs/hardhat-collect-outcomes": "^2.3.29",
+    "@layerzerolabs/hardhat-config": "workspace:^",
+    "@layerzerolabs/hardhat-tron": "workspace:^",
+    "@layerzerolabs/lz-definitions": "workspace:^",
+    "@layerzerolabs/lz-proof-utility": "workspace:^",
+    "@layerzerolabs/lz-utilities": "workspace:^",
+    "@layerzerolabs/monorepo-utilities": "workspace:^",
+    "@layerzerolabs/ops-core": "workspace:^",
+    "@layerzerolabs/ops-definitions-layerzero": "workspace:^",
+    "@layerzerolabs/ops-plugin-core": "workspace:^",
+    "@layerzerolabs/ops-utilities": "workspace:^",
+    "@layerzerolabs/tsup-config-next": "workspace:^",
+    "@layerzerolabs/typescript-config-next": "workspace:^",
+    "@matterlabs/hardhat-zksync-deploy": "^0.6.5",
+    "@nomicfoundation/hardhat-chai-matchers": "^1.0.6",
+    "@nomicfoundation/hardhat-network-helpers": "^1.0.9",
+    "@nomicfoundation/hardhat-verify": "^2.0.2",
+    "@nomiclabs/hardhat-ethers": "^2.2.3",
+    "@openzeppelin/contracts": "3.4.2-solc-0.7",
+    "@openzeppelin/contracts-upgradeable": "3.4.2-solc-0.7",
+    "@stargatefinance/stg-evm-v1": "^1.0.33",
+    "@typechain/ethers-v5": "^10.2.1",
+    "@typechain/hardhat": "^6.1.6",
+    "@types/chai": "^4.3.11",
+    "@types/jest": "^29.5.10",
+    "@types/lodash": "^4.14.202",
+    "@types/mocha": "^10.0.6",
+    "@types/node": "^20.10.5",
+    "chai": "^4.3.10",
+    "chai-ethers": "^0.0.1",
+    "cross-cat": "1.0.0",
+    "hardhat": "^2.19.0",
+    "hardhat-contract-sizer": "^2.10.0",
+    "hardhat-deploy": "^0.12.4",
+    "hardhat-deploy-ethers": "^0.3.0-beta.13",
+    "hardhat-gas-reporter": "^1.0.9",
+    "mocha": "^10.2.0",
+    "rimraf": "^5.0.5",
+    "smol-toml": "^1.2.0",
+    "solidity-coverage": "^0.8.5",
+    "ts-node": "^10.9.1",
+    "tsup": "^8.0.1",
+    "typechain": "^8.3.2",
+    "typescript": "~5.2.2"
+  },
+  "peerDependencies": {
+    "@openzeppelin/contracts": "3.4.2-solc-0.7 || ^3.4.2 || ^4.0.0 || ^5.0.0",
+    "@openzeppelin/contracts-upgradeable": "3.4.2-solc-0.7 || ^3.4.2 || ^4.0.0 || ^5.0.0",
+    "hardhat-deploy": "^0.12.4"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "lzVersions": {
+    "default": [
+      "v1"
+    ]
   }
 }
