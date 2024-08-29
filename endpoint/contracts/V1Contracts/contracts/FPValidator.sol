@@ -3,7 +3,7 @@
 pragma solidity 0.7.6;
 pragma abicoder v2;
 
-import "./utility/LayerZeroPacket.sol";
+// import "./utility/LayerZeroPacket.sol";
 import "../interfaces/ILayerZeroValidationLibrary.sol";
 import "../interfaces/IValidationLibraryHelperV2.sol";
 

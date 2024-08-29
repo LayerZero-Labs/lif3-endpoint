@@ -1,0 +1,10 @@
+{
+  "extends": "@layerzerolabs/typescript-config-next/base.json",
+  "compilerOptions": {
+    "outDir": "../dist",
+    "rootDirs": ["."],
+    "composite": true
+  },
+  "include": ["./**/*.ts"],
+  "exclude": []
+}

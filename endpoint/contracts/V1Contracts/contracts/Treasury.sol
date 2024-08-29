@@ -4,8 +4,7 @@ pragma solidity 0.7.6;
 
 import "./interfaces/ILayerZeroTreasury.sol";
 import "@openzeppelin/contracts/access/Ownable.sol";
-import "@openzeppelin/contracts/utils/math/SafeMath.sol";
-import "./interfaces/ILayerZeroUltraLightNodeV1.sol";
+import "@openzeppelin/contracts/math/SafeMath.sol";import "./interfaces/ILayerZeroUltraLightNodeV1.sol";
 
 contract Treasury is ILayerZeroTreasury, Ownable {
     using SafeMath for uint;

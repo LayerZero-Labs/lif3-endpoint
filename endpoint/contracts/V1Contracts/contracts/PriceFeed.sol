@@ -3,8 +3,7 @@
 pragma solidity 0.7.6;
 pragma abicoder v2;
 
-// import "@openzeppelin/contracts/utils/math/SafeMath.sol";
-import "@openzeppelin/contracts/utils/math/SafeMath.sol";
+import "@openzeppelin/contracts/math/SafeMath.sol";
 import "@openzeppelin/contracts-upgradeable/access/OwnableUpgradeable.sol";
 import "hardhat-deploy/solc_0.7/proxy/Proxied.sol";
 import "./interfaces/ILayerZeroPriceFeed.sol";

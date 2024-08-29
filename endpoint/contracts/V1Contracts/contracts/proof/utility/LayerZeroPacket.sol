@@ -3,8 +3,7 @@
 pragma solidity 0.7.6;
 
 import "./Buffer.sol";
-import "@openzeppelin/contracts/utils/math/SafeMath.sol";
-
+import "@openzeppelin/contracts/math/SafeMath.sol";
 library LayerZeroPacket {
     using Buffer for Buffer.buffer;
     using SafeMath for uint;
