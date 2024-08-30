@@ -1,0 +1,382 @@
+{
+  "address": "0xFfa4e5475e76c39eB22D3A0c5FB259BD48321758",
+  "abi": [
+    {
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "_stargateBridgeAddress",
+          "type": "address"
+        },
+        {
+          "internalType": "address",
+          "name": "_stargateTokenAddress",
+          "type": "address"
+        }
+      ],
+      "stateMutability": "nonpayable",
+      "type": "constructor"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "bytes",
+          "name": "data",
+          "type": "bytes"
+        },
+        {
+          "internalType": "uint256",
+          "name": "sizeOfSrcAddress",
+          "type": "uint256"
+        },
+        {
+          "internalType": "bytes32",
+          "name": "ulnAddress",
+          "type": "bytes32"
+        }
+      ],
+      "name": "getPacket",
+      "outputs": [
+        {
+          "components": [
+            {
+              "internalType": "uint16",
+              "name": "srcChainId",
+              "type": "uint16"
+            },
+            {
+              "internalType": "uint16",
+              "name": "dstChainId",
+              "type": "uint16"
+            },
+            {
+              "internalType": "uint64",
+              "name": "nonce",
+              "type": "uint64"
+            },
+            {
+              "internalType": "address",
+              "name": "dstAddress",
+              "type": "address"
+            },
+            {
+              "internalType": "bytes",
+              "name": "srcAddress",
+              "type": "bytes"
+            },
+            {
+              "internalType": "bytes32",
+              "name": "ulnAddress",
+              "type": "bytes32"
+            },
+            {
+              "internalType": "bytes",
+              "name": "payload",
+              "type": "bytes"
+            }
+          ],
+          "internalType": "struct LayerZeroPacket.Packet",
+          "name": "",
+          "type": "tuple"
+        }
+      ],
+      "stateMutability": "pure",
+      "type": "function"
+    },
+    {
+      "inputs": [],
+      "name": "getProofType",
+      "outputs": [
+        {
+          "internalType": "uint8",
+          "name": "",
+          "type": "uint8"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [],
+      "name": "getUtilsVersion",
+      "outputs": [
+        {
+          "internalType": "uint8",
+          "name": "",
+          "type": "uint8"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "bytes32",
+          "name": "",
+          "type": "bytes32"
+        },
+        {
+          "internalType": "uint256[]",
+          "name": "",
+          "type": "uint256[]"
+        },
+        {
+          "internalType": "uint256",
+          "name": "",
+          "type": "uint256"
+        },
+        {
+          "internalType": "bytes[]",
+          "name": "proof",
+          "type": "bytes[]"
+        }
+      ],
+      "name": "getVerifyLog",
+      "outputs": [
+        {
+          "components": [
+            {
+              "internalType": "bytes32",
+              "name": "contractAddress",
+              "type": "bytes32"
+            },
+            {
+              "internalType": "bytes32",
+              "name": "topicZeroSig",
+              "type": "bytes32"
+            },
+            {
+              "internalType": "bytes",
+              "name": "data",
+              "type": "bytes"
+            }
+          ],
+          "internalType": "struct IValidationLibraryHelperV2.ULNLog",
+          "name": "log",
+          "type": "tuple"
+        }
+      ],
+      "stateMutability": "pure",
+      "type": "function"
+    },
+    {
+      "inputs": [],
+      "name": "proofType",
+      "outputs": [
+        {
+          "internalType": "uint8",
+          "name": "",
+          "type": "uint8"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "bytes",
+          "name": "_payload",
+          "type": "bytes"
+        }
+      ],
+      "name": "secureStgPayload",
+      "outputs": [
+        {
+          "internalType": "bytes",
+          "name": "",
+          "type": "bytes"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "bytes",
+          "name": "_payload",
+          "type": "bytes"
+        }
+      ],
+      "name": "secureStgTokenPayload",
+      "outputs": [
+        {
+          "internalType": "bytes",
+          "name": "",
+          "type": "bytes"
+        }
+      ],
+      "stateMutability": "pure",
+      "type": "function"
+    },
+    {
+      "inputs": [],
+      "name": "stargateBridgeAddress",
+      "outputs": [
+        {
+          "internalType": "address",
+          "name": "",
+          "type": "address"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [],
+      "name": "stargateTokenAddress",
+      "outputs": [
+        {
+          "internalType": "address",
+          "name": "",
+          "type": "address"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [],
+      "name": "utilsVersion",
+      "outputs": [
+        {
+          "internalType": "uint8",
+          "name": "",
+          "type": "uint8"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "bytes32",
+          "name": "_packetHash",
+          "type": "bytes32"
+        },
+        {
+          "internalType": "bytes",
+          "name": "_transactionProof",
+          "type": "bytes"
+        },
+        {
+          "internalType": "uint256",
+          "name": "_remoteAddressSize",
+          "type": "uint256"
+        }
+      ],
+      "name": "validateProof",
+      "outputs": [
+        {
+          "components": [
+            {
+              "internalType": "uint16",
+              "name": "srcChainId",
+              "type": "uint16"
+            },
+            {
+              "internalType": "uint16",
+              "name": "dstChainId",
+              "type": "uint16"
+            },
+            {
+              "internalType": "uint64",
+              "name": "nonce",
+              "type": "uint64"
+            },
+            {
+              "internalType": "address",
+              "name": "dstAddress",
+              "type": "address"
+            },
+            {
+              "internalType": "bytes",
+              "name": "srcAddress",
+              "type": "bytes"
+            },
+            {
+              "internalType": "bytes32",
+              "name": "ulnAddress",
+              "type": "bytes32"
+            },
+            {
+              "internalType": "bytes",
+              "name": "payload",
+              "type": "bytes"
+            }
+          ],
+          "internalType": "struct LayerZeroPacket.Packet",
+          "name": "packet",
+          "type": "tuple"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    }
+  ],
+  "transactionHash": "0x6b4c7aa7925c6cdf8fb922b7c157f84f784a1a86e3167be137881533322b5ffe",
+  "receipt": {
+    "to": null,
+    "from": "0x462c2AE39B6B0bdB950Deb2BC82082308cF8cB10",
+    "contractAddress": "0xFfa4e5475e76c39eB22D3A0c5FB259BD48321758",
+    "transactionIndex": 0,
+    "gasUsed": "1027892",
+    "logsBloom": "0x00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000",
+    "blockHash": "0xd34daeb89a6510687fa0d340e6e093c1a5561976c095da7bff254938d5e2aa56",
+    "transactionHash": "0x6b4c7aa7925c6cdf8fb922b7c157f84f784a1a86e3167be137881533322b5ffe",
+    "logs": [],
+    "blockNumber": 35651820,
+    "cumulativeGasUsed": "1027892",
+    "status": 1,
+    "byzantium": true
+  },
+  "args": [
+    "0x0000000000000000000000000000000000000000",
+    "0x0000000000000000000000000000000000000000"
+  ],
+  "numDeployments": 1,
+  "solcInputHash": "66a864f53fcbcd62b4ecebba23860347",
+  "metadata": "{\"compiler\":{\"version\":\"0.7.6+commit.7338295f\"},\"language\":\"Solidity\",\"output\":{\"abi\":[{\"inputs\":[{\"internalType\":\"address\",\"name\":\"_stargateBridgeAddress\",\"type\":\"address\"},{\"internalType\":\"address\",\"name\":\"_stargateTokenAddress\",\"type\":\"address\"}],\"stateMutability\":\"nonpayable\",\"type\":\"constructor\"},{\"inputs\":[{\"internalType\":\"bytes\",\"name\":\"data\",\"type\":\"bytes\"},{\"internalType\":\"uint256\",\"name\":\"sizeOfSrcAddress\",\"type\":\"uint256\"},{\"internalType\":\"bytes32\",\"name\":\"ulnAddress\",\"type\":\"bytes32\"}],\"name\":\"getPacket\",\"outputs\":[{\"components\":[{\"internalType\":\"uint16\",\"name\":\"srcChainId\",\"type\":\"uint16\"},{\"internalType\":\"uint16\",\"name\":\"dstChainId\",\"type\":\"uint16\"},{\"internalType\":\"uint64\",\"name\":\"nonce\",\"type\":\"uint64\"},{\"internalType\":\"address\",\"name\":\"dstAddress\",\"type\":\"address\"},{\"internalType\":\"bytes\",\"name\":\"srcAddress\",\"type\":\"bytes\"},{\"internalType\":\"bytes32\",\"name\":\"ulnAddress\",\"type\":\"bytes32\"},{\"internalType\":\"bytes\",\"name\":\"payload\",\"type\":\"bytes\"}],\"internalType\":\"struct LayerZeroPacket.Packet\",\"name\":\"\",\"type\":\"tuple\"}],\"stateMutability\":\"pure\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"getProofType\",\"outputs\":[{\"internalType\":\"uint8\",\"name\":\"\",\"type\":\"uint8\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"getUtilsVersion\",\"outputs\":[{\"internalType\":\"uint8\",\"name\":\"\",\"type\":\"uint8\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"bytes32\",\"name\":\"\",\"type\":\"bytes32\"},{\"internalType\":\"uint256[]\",\"name\":\"\",\"type\":\"uint256[]\"},{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"},{\"internalType\":\"bytes[]\",\"name\":\"proof\",\"type\":\"bytes[]\"}],\"name\":\"getVerifyLog\",\"outputs\":[{\"components\":[{\"internalType\":\"bytes32\",\"name\":\"contractAddress\",\"type\":\"bytes32\"},{\"internalType\":\"bytes32\",\"name\":\"topicZeroSig\",\"type\":\"bytes32\"},{\"internalType\":\"bytes\",\"name\":\"data\",\"type\":\"bytes\"}],\"internalType\":\"struct IValidationLibraryHelperV2.ULNLog\",\"name\":\"log\",\"type\":\"tuple\"}],\"stateMutability\":\"pure\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"proofType\",\"outputs\":[{\"internalType\":\"uint8\",\"name\":\"\",\"type\":\"uint8\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"bytes\",\"name\":\"_payload\",\"type\":\"bytes\"}],\"name\":\"secureStgPayload\",\"outputs\":[{\"internalType\":\"bytes\",\"name\":\"\",\"type\":\"bytes\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"bytes\",\"name\":\"_payload\",\"type\":\"bytes\"}],\"name\":\"secureStgTokenPayload\",\"outputs\":[{\"internalType\":\"bytes\",\"name\":\"\",\"type\":\"bytes\"}],\"stateMutability\":\"pure\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"stargateBridgeAddress\",\"outputs\":[{\"internalType\":\"address\",\"name\":\"\",\"type\":\"address\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"stargateTokenAddress\",\"outputs\":[{\"internalType\":\"address\",\"name\":\"\",\"type\":\"address\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"utilsVersion\",\"outputs\":[{\"internalType\":\"uint8\",\"name\":\"\",\"type\":\"uint8\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"bytes32\",\"name\":\"_packetHash\",\"type\":\"bytes32\"},{\"internalType\":\"bytes\",\"name\":\"_transactionProof\",\"type\":\"bytes\"},{\"internalType\":\"uint256\",\"name\":\"_remoteAddressSize\",\"type\":\"uint256\"}],\"name\":\"validateProof\",\"outputs\":[{\"components\":[{\"internalType\":\"uint16\",\"name\":\"srcChainId\",\"type\":\"uint16\"},{\"internalType\":\"uint16\",\"name\":\"dstChainId\",\"type\":\"uint16\"},{\"internalType\":\"uint64\",\"name\":\"nonce\",\"type\":\"uint64\"},{\"internalType\":\"address\",\"name\":\"dstAddress\",\"type\":\"address\"},{\"internalType\":\"bytes\",\"name\":\"srcAddress\",\"type\":\"bytes\"},{\"internalType\":\"bytes32\",\"name\":\"ulnAddress\",\"type\":\"bytes32\"},{\"internalType\":\"bytes\",\"name\":\"payload\",\"type\":\"bytes\"}],\"internalType\":\"struct LayerZeroPacket.Packet\",\"name\":\"packet\",\"type\":\"tuple\"}],\"stateMutability\":\"view\",\"type\":\"function\"}],\"devdoc\":{\"kind\":\"dev\",\"methods\":{},\"version\":1},\"userdoc\":{\"kind\":\"user\",\"methods\":{},\"version\":1}},\"settings\":{\"compilationTarget\":{\"contracts/V1Contracts/contracts/FPValidator.sol\":\"FPValidator\"},\"evmVersion\":\"istanbul\",\"libraries\":{},\"metadata\":{\"bytecodeHash\":\"ipfs\",\"useLiteralContent\":true},\"optimizer\":{\"enabled\":true,\"runs\":200},\"remappings\":[]},\"sources\":{\"@openzeppelin/contracts/math/SafeMath.sol\":{\"content\":\"// SPDX-License-Identifier: MIT\\n\\npragma solidity ^0.7.0;\\n\\n/**\\n * @dev Wrappers over Solidity's arithmetic operations with added overflow\\n * checks.\\n *\\n * Arithmetic operations in Solidity wrap on overflow. This can easily result\\n * in bugs, because programmers usually assume that an overflow raises an\\n * error, which is the standard behavior in high level programming languages.\\n * `SafeMath` restores this intuition by reverting the transaction when an\\n * operation overflows.\\n *\\n * Using this library instead of the unchecked operations eliminates an entire\\n * class of bugs, so it's recommended to use it always.\\n */\\nlibrary SafeMath {\\n    /**\\n     * @dev Returns the addition of two unsigned integers, with an overflow flag.\\n     *\\n     * _Available since v3.4._\\n     */\\n    function tryAdd(uint256 a, uint256 b) internal pure returns (bool, uint256) {\\n        uint256 c = a + b;\\n        if (c < a) return (false, 0);\\n        return (true, c);\\n    }\\n\\n    /**\\n     * @dev Returns the substraction of two unsigned integers, with an overflow flag.\\n     *\\n     * _Available since v3.4._\\n     */\\n    function trySub(uint256 a, uint256 b) internal pure returns (bool, uint256) {\\n        if (b > a) return (false, 0);\\n        return (true, a - b);\\n    }\\n\\n    /**\\n     * @dev Returns the multiplication of two unsigned integers, with an overflow flag.\\n     *\\n     * _Available since v3.4._\\n     */\\n    function tryMul(uint256 a, uint256 b) internal pure returns (bool, uint256) {\\n        // Gas optimization: this is cheaper than requiring 'a' not being zero, but the\\n        // benefit is lost if 'b' is also tested.\\n        // See: https://github.com/OpenZeppelin/openzeppelin-contracts/pull/522\\n        if (a == 0) return (true, 0);\\n        uint256 c = a * b;\\n        if (c / a != b) return (false, 0);\\n        return (true, c);\\n    }\\n\\n    /**\\n     * @dev Returns the division of two unsigned integers, with a division by zero flag.\\n     *\\n     * _Available since v3.4._\\n     */\\n    function tryDiv(uint256 a, uint256 b) internal pure returns (bool, uint256) {\\n        if (b == 0) return (false, 0);\\n        return (true, a / b);\\n    }\\n\\n    /**\\n     * @dev Returns the remainder of dividing two unsigned integers, with a division by zero flag.\\n     *\\n     * _Available since v3.4._\\n     */\\n    function tryMod(uint256 a, uint256 b) internal pure returns (bool, uint256) {\\n        if (b == 0) return (false, 0);\\n        return (true, a % b);\\n    }\\n\\n    /**\\n     * @dev Returns the addition of two unsigned integers, reverting on\\n     * overflow.\\n     *\\n     * Counterpart to Solidity's `+` operator.\\n     *\\n     * Requirements:\\n     *\\n     * - Addition cannot overflow.\\n     */\\n    function add(uint256 a, uint256 b) internal pure returns (uint256) {\\n        uint256 c = a + b;\\n        require(c >= a, \\\"SafeMath: addition overflow\\\");\\n        return c;\\n    }\\n\\n    /**\\n     * @dev Returns the subtraction of two unsigned integers, reverting on\\n     * overflow (when the result is negative).\\n     *\\n     * Counterpart to Solidity's `-` operator.\\n     *\\n     * Requirements:\\n     *\\n     * - Subtraction cannot overflow.\\n     */\\n    function sub(uint256 a, uint256 b) internal pure returns (uint256) {\\n        require(b <= a, \\\"SafeMath: subtraction overflow\\\");\\n        return a - b;\\n    }\\n\\n    /**\\n     * @dev Returns the multiplication of two unsigned integers, reverting on\\n     * overflow.\\n     *\\n     * Counterpart to Solidity's `*` operator.\\n     *\\n     * Requirements:\\n     *\\n     * - Multiplication cannot overflow.\\n     */\\n    function mul(uint256 a, uint256 b) internal pure returns (uint256) {\\n        if (a == 0) return 0;\\n        uint256 c = a * b;\\n        require(c / a == b, \\\"SafeMath: multiplication overflow\\\");\\n        return c;\\n    }\\n\\n    /**\\n     * @dev Returns the integer division of two unsigned integers, reverting on\\n     * division by zero. The result is rounded towards zero.\\n     *\\n     * Counterpart to Solidity's `/` operator. Note: this function uses a\\n     * `revert` opcode (which leaves remaining gas untouched) while Solidity\\n     * uses an invalid opcode to revert (consuming all remaining gas).\\n     *\\n     * Requirements:\\n     *\\n     * - The divisor cannot be zero.\\n     */\\n    function div(uint256 a, uint256 b) internal pure returns (uint256) {\\n        require(b > 0, \\\"SafeMath: division by zero\\\");\\n        return a / b;\\n    }\\n\\n    /**\\n     * @dev Returns the remainder of dividing two unsigned integers. (unsigned integer modulo),\\n     * reverting when dividing by zero.\\n     *\\n     * Counterpart to Solidity's `%` operator. This function uses a `revert`\\n     * opcode (which leaves remaining gas untouched) while Solidity uses an\\n     * invalid opcode to revert (consuming all remaining gas).\\n     *\\n     * Requirements:\\n     *\\n     * - The divisor cannot be zero.\\n     */\\n    function mod(uint256 a, uint256 b) internal pure returns (uint256) {\\n        require(b > 0, \\\"SafeMath: modulo by zero\\\");\\n        return a % b;\\n    }\\n\\n    /**\\n     * @dev Returns the subtraction of two unsigned integers, reverting with custom message on\\n     * overflow (when the result is negative).\\n     *\\n     * CAUTION: This function is deprecated because it requires allocating memory for the error\\n     * message unnecessarily. For custom revert reasons use {trySub}.\\n     *\\n     * Counterpart to Solidity's `-` operator.\\n     *\\n     * Requirements:\\n     *\\n     * - Subtraction cannot overflow.\\n     */\\n    function sub(uint256 a, uint256 b, string memory errorMessage) internal pure returns (uint256) {\\n        require(b <= a, errorMessage);\\n        return a - b;\\n    }\\n\\n    /**\\n     * @dev Returns the integer division of two unsigned integers, reverting with custom message on\\n     * division by zero. The result is rounded towards zero.\\n     *\\n     * CAUTION: This function is deprecated because it requires allocating memory for the error\\n     * message unnecessarily. For custom revert reasons use {tryDiv}.\\n     *\\n     * Counterpart to Solidity's `/` operator. Note: this function uses a\\n     * `revert` opcode (which leaves remaining gas untouched) while Solidity\\n     * uses an invalid opcode to revert (consuming all remaining gas).\\n     *\\n     * Requirements:\\n     *\\n     * - The divisor cannot be zero.\\n     */\\n    function div(uint256 a, uint256 b, string memory errorMessage) internal pure returns (uint256) {\\n        require(b > 0, errorMessage);\\n        return a / b;\\n    }\\n\\n    /**\\n     * @dev Returns the remainder of dividing two unsigned integers. (unsigned integer modulo),\\n     * reverting with custom message when dividing by zero.\\n     *\\n     * CAUTION: This function is deprecated because it requires allocating memory for the error\\n     * message unnecessarily. For custom revert reasons use {tryMod}.\\n     *\\n     * Counterpart to Solidity's `%` operator. This function uses a `revert`\\n     * opcode (which leaves remaining gas untouched) while Solidity uses an\\n     * invalid opcode to revert (consuming all remaining gas).\\n     *\\n     * Requirements:\\n     *\\n     * - The divisor cannot be zero.\\n     */\\n    function mod(uint256 a, uint256 b, string memory errorMessage) internal pure returns (uint256) {\\n        require(b > 0, errorMessage);\\n        return a % b;\\n    }\\n}\\n\",\"keccak256\":\"0xe22a1fc7400ae196eba2ad1562d0386462b00a6363b742d55a2fd2021a58586f\",\"license\":\"MIT\"},\"contracts/V1Contracts/contracts/FPValidator.sol\":{\"content\":\"// SPDX-License-Identifier: BUSL-1.1\\n\\npragma solidity 0.7.6;\\npragma abicoder v2;\\n\\n// import \\\"./utility/LayerZeroPacket.sol\\\";\\nimport \\\"../interfaces/ILayerZeroValidationLibrary.sol\\\";\\nimport \\\"../interfaces/IValidationLibraryHelperV2.sol\\\";\\n\\ninterface IStargate {\\n    // Stargate objects for abi encoding / decoding\\n    struct SwapObj {\\n        uint amount;\\n        uint eqFee;\\n        uint eqReward;\\n        uint lpFee;\\n        uint protocolFee;\\n        uint lkbRemove;\\n    }\\n\\n    struct CreditObj {\\n        uint credits;\\n        uint idealBalance;\\n    }\\n}\\n\\ncontract FPValidator is ILayerZeroValidationLibrary, IValidationLibraryHelperV2 {\\n    uint8 public proofType = 2;\\n    uint8 public utilsVersion = 1;\\n\\n    address public immutable stargateBridgeAddress;\\n    address public immutable stargateTokenAddress;\\n\\n    constructor(address _stargateBridgeAddress, address _stargateTokenAddress) {\\n        stargateBridgeAddress = _stargateBridgeAddress;\\n        stargateTokenAddress = _stargateTokenAddress;\\n    }\\n\\n    function validateProof(\\n        bytes32 _packetHash,\\n        bytes calldata _transactionProof,\\n        uint _remoteAddressSize\\n    ) external view override returns (LayerZeroPacket.Packet memory packet) {\\n        require(_remoteAddressSize > 0, \\\"ProofLib: invalid address size\\\");\\n        // _transactionProof = srcUlnAddress (32 bytes) + lzPacket\\n        require(\\n            _transactionProof.length > 32 && keccak256(_transactionProof) == _packetHash,\\n            \\\"ProofLib: invalid transaction proof\\\"\\n        );\\n\\n        bytes memory ulnAddressBytes = bytes(_transactionProof[0:32]);\\n        bytes32 ulnAddress;\\n        assembly {\\n            ulnAddress := mload(add(ulnAddressBytes, 32))\\n        }\\n        packet = LayerZeroPacket.getPacketV3(_transactionProof[32:], _remoteAddressSize, ulnAddress);\\n\\n        if (packet.dstAddress == stargateBridgeAddress) packet.payload = _secureStgPayload(packet.payload);\\n        if (packet.dstAddress == stargateTokenAddress) packet.payload = _secureStgTokenPayload(packet.payload);\\n\\n        return packet;\\n    }\\n\\n    function _secureStgTokenPayload(bytes memory _payload) internal pure returns (bytes memory) {\\n        (bytes memory toAddressBytes, uint qty) = abi.decode(_payload, (bytes, uint));\\n\\n        address toAddress = address(0);\\n        if (toAddressBytes.length > 0) {\\n            assembly {\\n                toAddress := mload(add(toAddressBytes, 20))\\n            }\\n        }\\n\\n        if (toAddress == address(0)) {\\n            address deadAddress = address(0x000000000000000000000000000000000000dEaD);\\n            bytes memory newToAddressBytes = abi.encodePacked(deadAddress);\\n            return abi.encode(newToAddressBytes, qty);\\n        }\\n\\n        // default to return the original payload\\n        return _payload;\\n    }\\n\\n    function _secureStgPayload(bytes memory _payload) internal view returns (bytes memory) {\\n        // functionType is uint8 even though the encoding will take up the side of uint256\\n        uint8 functionType;\\n        assembly {\\n            functionType := mload(add(_payload, 32))\\n        }\\n\\n        // TYPE_SWAP_REMOTE == 1 && only if the payload has a payload\\n        // only swapRemote inside of stargate can call sgReceive on an user supplied to address\\n        // thus we do not care about the other type functions even if the toAddress is overly long.\\n        if (functionType == 1) {\\n            // decode the _payload with its types\\n            (\\n                ,\\n                uint srcPoolId,\\n                uint dstPoolId,\\n                uint dstGasForCall,\\n                IStargate.CreditObj memory c,\\n                IStargate.SwapObj memory s,\\n                bytes memory toAddressBytes,\\n                bytes memory contractCallPayload\\n            ) = abi.decode(_payload, (uint8, uint, uint, uint, IStargate.CreditObj, IStargate.SwapObj, bytes, bytes));\\n\\n            // if contractCallPayload.length > 0 need to check if the to address is a contract or not\\n            if (contractCallPayload.length > 0) {\\n                // otherwise, need to check if the payload can be delivered to the toAddress\\n                address toAddress = address(0);\\n                if (toAddressBytes.length > 0) {\\n                    assembly {\\n                        toAddress := mload(add(toAddressBytes, 20))\\n                    }\\n                }\\n\\n                // check if the toAddress is a contract. We are not concerned about addresses that pretend to be wallets. because worst case we just delete their payload if being malicious\\n                // we can guarantee that if a size > 0, then the contract is definitely a contract address in this context\\n                uint size;\\n                assembly {\\n                    size := extcodesize(toAddress)\\n                }\\n\\n                if (size == 0) {\\n                    // size == 0 indicates its not a contract, payload wont be delivered\\n                    // secure the _payload to make sure funds can be delivered to the toAddress\\n                    bytes memory newToAddressBytes = abi.encodePacked(toAddress);\\n                    bytes memory securePayload = abi.encode(\\n                        functionType,\\n                        srcPoolId,\\n                        dstPoolId,\\n                        dstGasForCall,\\n                        c,\\n                        s,\\n                        newToAddressBytes,\\n                        bytes(\\\"\\\")\\n                    );\\n                    return securePayload;\\n                }\\n            }\\n        }\\n\\n        // default to return the original payload\\n        return _payload;\\n    }\\n\\n    function secureStgTokenPayload(bytes memory _payload) external pure returns (bytes memory) {\\n        return _secureStgTokenPayload(_payload);\\n    }\\n\\n    function secureStgPayload(bytes memory _payload) external view returns (bytes memory) {\\n        return _secureStgPayload(_payload);\\n    }\\n\\n    function getUtilsVersion() external view override returns (uint8) {\\n        return utilsVersion;\\n    }\\n\\n    function getProofType() external view override returns (uint8) {\\n        return proofType;\\n    }\\n\\n    function getVerifyLog(\\n        bytes32,\\n        uint[] calldata,\\n        uint,\\n        bytes[] calldata proof\\n    ) external pure override returns (ULNLog memory log) {}\\n\\n    function getPacket(\\n        bytes memory data,\\n        uint sizeOfSrcAddress,\\n        bytes32 ulnAddress\\n    ) external pure override returns (LayerZeroPacket.Packet memory) {\\n        return LayerZeroPacket.getPacketV3(data, sizeOfSrcAddress, ulnAddress);\\n    }\\n}\\n\",\"keccak256\":\"0x7ae2ddc6b8b89a03dfc15a2ab1aa4b0b1092de50e07cd66396f82e57608ee76f\",\"license\":\"BUSL-1.1\"},\"contracts/V1Contracts/interfaces/ILayerZeroValidationLibrary.sol\":{\"content\":\"// SPDX-License-Identifier: BUSL-1.1\\n\\npragma solidity >=0.7.0;\\npragma abicoder v2;\\n\\nimport \\\"../proof/utility/LayerZeroPacket.sol\\\";\\n\\ninterface ILayerZeroValidationLibrary {\\n    function validateProof(\\n        bytes32 blockData,\\n        bytes calldata _data,\\n        uint _remoteAddressSize\\n    ) external returns (LayerZeroPacket.Packet memory packet);\\n}\\n\",\"keccak256\":\"0x0621a318689774296b47c95d8738d0c4e1bc63efe62e524cb3ea36ef1a9da487\",\"license\":\"BUSL-1.1\"},\"contracts/V1Contracts/interfaces/IValidationLibraryHelperV2.sol\":{\"content\":\"// SPDX-License-Identifier: BUSL-1.1\\n\\npragma solidity >=0.7.0;\\npragma abicoder v2;\\n\\nimport \\\"../proof/utility/LayerZeroPacket.sol\\\";\\n\\ninterface IValidationLibraryHelperV2 {\\n    struct ULNLog {\\n        bytes32 contractAddress;\\n        bytes32 topicZeroSig;\\n        bytes data;\\n    }\\n\\n    function getVerifyLog(\\n        bytes32 hashRoot,\\n        uint[] calldata receiptSlotIndex,\\n        uint logIndex,\\n        bytes[] calldata proof\\n    ) external pure returns (ULNLog memory);\\n\\n    function getPacket(\\n        bytes calldata data,\\n        uint sizeOfSrcAddress,\\n        bytes32 ulnAddress\\n    ) external pure returns (LayerZeroPacket.Packet memory);\\n\\n    function getUtilsVersion() external view returns (uint8);\\n\\n    function getProofType() external view returns (uint8);\\n}\\n\",\"keccak256\":\"0xa65bfd98c01ae8eb3df2edc925720a85b8dd8f223ab8f8b641176a1c4c3cd41f\",\"license\":\"BUSL-1.1\"},\"contracts/V1Contracts/proof/utility/Buffer.sol\":{\"content\":\"// SPDX-License-Identifier: BUSL-1.1\\n\\n// https://github.com/ensdomains/buffer\\n\\npragma solidity ^0.7.0;\\n\\n/**\\n * @dev A library for working with mutable byte buffers in Solidity.\\n *\\n * Byte buffers are mutable and expandable, and provide a variety of primitives\\n * for writing to them. At any time you can fetch a bytes object containing the\\n * current contents of the buffer. The bytes object should not be stored between\\n * operations, as it may change due to resizing of the buffer.\\n */\\nlibrary Buffer {\\n    /**\\n     * @dev Represents a mutable buffer. Buffers have a current value (buf) and\\n     *      a capacity. The capacity may be longer than the current value, in\\n     *      which case it can be extended without the need to allocate more memory.\\n     */\\n    struct buffer {\\n        bytes buf;\\n        uint capacity;\\n    }\\n\\n    /**\\n     * @dev Initializes a buffer with an initial capacity.a co\\n     * @param buf The buffer to initialize.\\n     * @param capacity The number of bytes of space to allocate the buffer.\\n     * @return The buffer, for chaining.\\n     */\\n    function init(buffer memory buf, uint capacity) internal pure returns (buffer memory) {\\n        if (capacity % 32 != 0) {\\n            capacity += 32 - (capacity % 32);\\n        }\\n        // Allocate space for the buffer data\\n        buf.capacity = capacity;\\n        assembly {\\n            let ptr := mload(0x40)\\n            mstore(buf, ptr)\\n            mstore(ptr, 0)\\n            mstore(0x40, add(32, add(ptr, capacity)))\\n        }\\n        return buf;\\n    }\\n\\n    /**\\n     * @dev Writes a byte string to a buffer. Resizes if doing so would exceed\\n     *      the capacity of the buffer.\\n     * @param buf The buffer to append to.\\n     * @param off The start offset to write to.\\n     * @param rawData The data to append.\\n     * @param len The number of bytes to copy.\\n     * @return The original buffer, for chaining.\\n     */\\n    function writeRawBytes(\\n        buffer memory buf,\\n        uint off,\\n        bytes memory rawData,\\n        uint offData,\\n        uint len\\n    ) internal pure returns (buffer memory) {\\n        if (off + len > buf.capacity) {\\n            resize(buf, max(buf.capacity, len + off) * 2);\\n        }\\n\\n        uint dest;\\n        uint src;\\n        assembly {\\n            // Memory address of the buffer data\\n            let bufptr := mload(buf)\\n            // Length of existing buffer data\\n            let buflen := mload(bufptr)\\n            // Start address = buffer address + offset + sizeof(buffer length)\\n            dest := add(add(bufptr, 32), off)\\n            // Update buffer length if we're extending it\\n            if gt(add(len, off), buflen) {\\n                mstore(bufptr, add(len, off))\\n            }\\n            src := add(rawData, offData)\\n        }\\n\\n        // Copy word-length chunks while possible\\n        for (; len >= 32; len -= 32) {\\n            assembly {\\n                mstore(dest, mload(src))\\n            }\\n            dest += 32;\\n            src += 32;\\n        }\\n\\n        // Copy remaining bytes\\n        uint mask = 256 ** (32 - len) - 1;\\n        assembly {\\n            let srcpart := and(mload(src), not(mask))\\n            let destpart := and(mload(dest), mask)\\n            mstore(dest, or(destpart, srcpart))\\n        }\\n\\n        return buf;\\n    }\\n\\n    /**\\n     * @dev Writes a byte string to a buffer. Resizes if doing so would exceed\\n     *      the capacity of the buffer.\\n     * @param buf The buffer to append to.\\n     * @param off The start offset to write to.\\n     * @param data The data to append.\\n     * @param len The number of bytes to copy.\\n     * @return The original buffer, for chaining.\\n     */\\n    function write(buffer memory buf, uint off, bytes memory data, uint len) internal pure returns (buffer memory) {\\n        require(len <= data.length);\\n\\n        if (off + len > buf.capacity) {\\n            resize(buf, max(buf.capacity, len + off) * 2);\\n        }\\n\\n        uint dest;\\n        uint src;\\n        assembly {\\n            // Memory address of the buffer data\\n            let bufptr := mload(buf)\\n            // Length of existing buffer data\\n            let buflen := mload(bufptr)\\n            // Start address = buffer address + offset + sizeof(buffer length)\\n            dest := add(add(bufptr, 32), off)\\n            // Update buffer length if we're extending it\\n            if gt(add(len, off), buflen) {\\n                mstore(bufptr, add(len, off))\\n            }\\n            src := add(data, 32)\\n        }\\n\\n        // Copy word-length chunks while possible\\n        for (; len >= 32; len -= 32) {\\n            assembly {\\n                mstore(dest, mload(src))\\n            }\\n            dest += 32;\\n            src += 32;\\n        }\\n\\n        // Copy remaining bytes\\n        uint mask = 256 ** (32 - len) - 1;\\n        assembly {\\n            let srcpart := and(mload(src), not(mask))\\n            let destpart := and(mload(dest), mask)\\n            mstore(dest, or(destpart, srcpart))\\n        }\\n\\n        return buf;\\n    }\\n\\n    function append(buffer memory buf, bytes memory data) internal pure returns (buffer memory) {\\n        return write(buf, buf.buf.length, data, data.length);\\n    }\\n\\n    function resize(buffer memory buf, uint capacity) private pure {\\n        bytes memory oldbuf = buf.buf;\\n        init(buf, capacity);\\n        append(buf, oldbuf);\\n    }\\n\\n    function max(uint a, uint b) private pure returns (uint) {\\n        if (a > b) {\\n            return a;\\n        }\\n        return b;\\n    }\\n}\\n\",\"keccak256\":\"0x6fb6ba1e85708e05e0f2181136650463faca122318dd16aa6cbaa4f88e48d908\",\"license\":\"BUSL-1.1\"},\"contracts/V1Contracts/proof/utility/LayerZeroPacket.sol\":{\"content\":\"// SPDX-License-Identifier: BUSL-1.1\\n\\npragma solidity 0.7.6;\\n\\nimport \\\"./Buffer.sol\\\";\\nimport \\\"@openzeppelin/contracts/math/SafeMath.sol\\\";\\nlibrary LayerZeroPacket {\\n    using Buffer for Buffer.buffer;\\n    using SafeMath for uint;\\n\\n    struct Packet {\\n        uint16 srcChainId;\\n        uint16 dstChainId;\\n        uint64 nonce;\\n        address dstAddress;\\n        bytes srcAddress;\\n        bytes32 ulnAddress;\\n        bytes payload;\\n    }\\n\\n    function getPacket(\\n        bytes memory data,\\n        uint16 srcChain,\\n        uint sizeOfSrcAddress,\\n        bytes32 ulnAddress\\n    ) internal pure returns (LayerZeroPacket.Packet memory) {\\n        uint16 dstChainId;\\n        address dstAddress;\\n        uint size;\\n        uint64 nonce;\\n\\n        // The log consists of the destination chain id and then a bytes payload\\n        //      0--------------------------------------------31\\n        // 0   |  total bytes size\\n        // 32  |  destination chain id\\n        // 64  |  bytes offset\\n        // 96  |  bytes array size\\n        // 128 |  payload\\n        assembly {\\n            dstChainId := mload(add(data, 32))\\n            size := mload(add(data, 96)) /// size of the byte array\\n            nonce := mload(add(data, 104)) // offset to convert to uint64  128  is index -24\\n            dstAddress := mload(add(data, sub(add(128, sizeOfSrcAddress), 4))) // offset to convert to address 12 -8\\n        }\\n\\n        Buffer.buffer memory srcAddressBuffer;\\n        srcAddressBuffer.init(sizeOfSrcAddress);\\n        srcAddressBuffer.writeRawBytes(0, data, 136, sizeOfSrcAddress); // 128 + 8\\n\\n        uint payloadSize = size.sub(28).sub(sizeOfSrcAddress);\\n        Buffer.buffer memory payloadBuffer;\\n        payloadBuffer.init(payloadSize);\\n        payloadBuffer.writeRawBytes(0, data, sizeOfSrcAddress.add(156), payloadSize); // 148 + 8\\n        return\\n            LayerZeroPacket.Packet(\\n                srcChain,\\n                dstChainId,\\n                nonce,\\n                dstAddress,\\n                srcAddressBuffer.buf,\\n                ulnAddress,\\n                payloadBuffer.buf\\n            );\\n    }\\n\\n    function getPacketV2(\\n        bytes memory data,\\n        uint sizeOfSrcAddress,\\n        bytes32 ulnAddress\\n    ) internal pure returns (LayerZeroPacket.Packet memory) {\\n        // packet def: abi.encodePacked(nonce, srcChain, srcAddress, dstChain, dstAddress, payload);\\n        // data def: abi.encode(packet) = offset(32) + length(32) + packet\\n        //              if from EVM\\n        // 0 - 31       0 - 31          |  total bytes size\\n        // 32 - 63      32 - 63         |  location\\n        // 64 - 95      64 - 95         |  size of the packet\\n        // 96 - 103     96 - 103        |  nonce\\n        // 104 - 105    104 - 105       |  srcChainId\\n        // 106 - P      106 - 125       |  srcAddress, where P = 106 + sizeOfSrcAddress - 1,\\n        // P+1 - P+2    126 - 127       |  dstChainId\\n        // P+3 - P+22   128 - 147       |  dstAddress\\n        // P+23 - END   148 - END       |  payload\\n\\n        // decode the packet\\n        uint256 realSize;\\n        uint64 nonce;\\n        uint16 srcChain;\\n        uint16 dstChain;\\n        address dstAddress;\\n        assembly {\\n            realSize := mload(add(data, 64))\\n            nonce := mload(add(data, 72)) // 104 - 32\\n            srcChain := mload(add(data, 74)) // 106 - 32\\n            dstChain := mload(add(data, add(76, sizeOfSrcAddress))) // P + 3 - 32 = 105 + size + 3 - 32 = 76 + size\\n            dstAddress := mload(add(data, add(96, sizeOfSrcAddress))) // P + 23 - 32 = 105 + size + 23 - 32 = 96 + size\\n        }\\n\\n        require(srcChain != 0, \\\"LayerZeroPacket: invalid packet\\\");\\n\\n        Buffer.buffer memory srcAddressBuffer;\\n        srcAddressBuffer.init(sizeOfSrcAddress);\\n        srcAddressBuffer.writeRawBytes(0, data, 106, sizeOfSrcAddress);\\n\\n        uint nonPayloadSize = sizeOfSrcAddress.add(32); // 2 + 2 + 8 + 20, 32 + 20 = 52 if sizeOfSrcAddress == 20\\n        uint payloadSize = realSize.sub(nonPayloadSize);\\n        Buffer.buffer memory payloadBuffer;\\n        payloadBuffer.init(payloadSize);\\n        payloadBuffer.writeRawBytes(0, data, nonPayloadSize.add(96), payloadSize);\\n\\n        return\\n            LayerZeroPacket.Packet(\\n                srcChain,\\n                dstChain,\\n                nonce,\\n                dstAddress,\\n                srcAddressBuffer.buf,\\n                ulnAddress,\\n                payloadBuffer.buf\\n            );\\n    }\\n\\n    function getPacketV3(\\n        bytes memory data,\\n        uint sizeOfSrcAddress,\\n        bytes32 ulnAddress\\n    ) internal pure returns (LayerZeroPacket.Packet memory) {\\n        // data def: abi.encodePacked(nonce, srcChain, srcAddress, dstChain, dstAddress, payload);\\n        //              if from EVM\\n        // 0 - 31       0 - 31          |  total bytes size\\n        // 32 - 39      32 - 39         |  nonce\\n        // 40 - 41      40 - 41         |  srcChainId\\n        // 42 - P       42 - 61         |  srcAddress, where P = 41 + sizeOfSrcAddress,\\n        // P+1 - P+2    62 - 63         |  dstChainId\\n        // P+3 - P+22   64 - 83         |  dstAddress\\n        // P+23 - END   84 - END        |  payload\\n\\n        // decode the packet\\n        uint256 realSize = data.length;\\n        uint nonPayloadSize = sizeOfSrcAddress.add(32); // 2 + 2 + 8 + 20, 32 + 20 = 52 if sizeOfSrcAddress == 20\\n        require(realSize >= nonPayloadSize, \\\"LayerZeroPacket: invalid packet\\\");\\n        uint payloadSize = realSize - nonPayloadSize;\\n\\n        uint64 nonce;\\n        uint16 srcChain;\\n        uint16 dstChain;\\n        address dstAddress;\\n        assembly {\\n            nonce := mload(add(data, 8)) // 40 - 32\\n            srcChain := mload(add(data, 10)) // 42 - 32\\n            dstChain := mload(add(data, add(12, sizeOfSrcAddress))) // P + 3 - 32 = 41 + size + 3 - 32 = 12 + size\\n            dstAddress := mload(add(data, add(32, sizeOfSrcAddress))) // P + 23 - 32 = 41 + size + 23 - 32 = 32 + size\\n        }\\n\\n        require(srcChain != 0, \\\"LayerZeroPacket: invalid packet\\\");\\n\\n        Buffer.buffer memory srcAddressBuffer;\\n        srcAddressBuffer.init(sizeOfSrcAddress);\\n        srcAddressBuffer.writeRawBytes(0, data, 42, sizeOfSrcAddress);\\n\\n        Buffer.buffer memory payloadBuffer;\\n        if (payloadSize > 0) {\\n            payloadBuffer.init(payloadSize);\\n            payloadBuffer.writeRawBytes(0, data, nonPayloadSize.add(32), payloadSize);\\n        }\\n\\n        return\\n            LayerZeroPacket.Packet(\\n                srcChain,\\n                dstChain,\\n                nonce,\\n                dstAddress,\\n                srcAddressBuffer.buf,\\n                ulnAddress,\\n                payloadBuffer.buf\\n            );\\n    }\\n}\\n\",\"keccak256\":\"0xd389b7095521342a6d7afc994bbf3da80e7c006f4f74f49e100f729c7247c9e0\",\"license\":\"BUSL-1.1\"}},\"version\":1}",
+  "bytecode": "0x60c06040526000805461ff001960ff199091166002171661010017905534801561002857600080fd5b5060405161121538038061121583398101604081905261004791610081565b6001600160601b0319606092831b8116608052911b1660a0526100b3565b80516001600160a01b038116811461007c57600080fd5b919050565b60008060408385031215610093578182fd5b61009c83610065565b91506100aa60208401610065565b90509250929050565b60805160601c60a05160601c61112f6100e66000398061036e52806103d75250806101e0528061031d525061112f6000f3fe608060405234801561001057600080fd5b50600436106100a95760003560e01c80636348d269116100715780636348d269146101345780639bcd850f14610149578063b71e0f7114610151578063d633ad6114610164578063e965c1921461016c578063ea455df914610174576100a9565b806305af5d35146100ae5780630f222e65146100cc5780632ff20449146100ec57806347713b391461010c5780635711c2a814610114575b600080fd5b6100b6610187565b6040516100c39190610fb1565b60405180910390f35b6100df6100da366004610b52565b610190565b6040516100c39190610f82565b6100ff6100fa366004610cc3565b6101a2565b6040516100c39190610ef3565b6100b66101bd565b610127610122366004610c4d565b6101cb565b6040516100c39190610e44565b61013c6101de565b6040516100c39190610e30565b6100b6610202565b6100ff61015f366004610bd1565b61020b565b6100b66103c7565b61013c6103d5565b610127610182366004610c4d565b6103f9565b60005460ff1681565b610198610946565b9695505050505050565b6101aa610965565b6101b5848484610404565b949350505050565b600054610100900460ff1681565b60606101d68261059c565b90505b919050565b7f000000000000000000000000000000000000000000000000000000000000000081565b60005460ff1690565b610213610965565b6000821161023c5760405162461bcd60e51b815260040161023390610ebc565b60405180910390fd5b6020831180156102625750848484604051610258929190610e20565b6040518091039020145b61027e5760405162461bcd60e51b815260040161023390610e79565b600061028d60208286886110a5565b8080601f016020809104026020016040519081016040528093929190818152602001838380828437600092019190915250505060208083015192935061031991506102db908790818a6110a5565b8080601f0160208091040260200160405190810160405280939291908181526020018383808284376000920191909152508892508591506104049050565b92507f00000000000000000000000000000000000000000000000000000000000000006001600160a01b031683606001516001600160a01b0316141561036c576103668360c0015161059c565b60c08401525b7f00000000000000000000000000000000000000000000000000000000000000006001600160a01b031683606001516001600160a01b031614156103bd576103b78360c00151610681565b60c08401525b5050949350505050565b600054610100900460ff1690565b7f000000000000000000000000000000000000000000000000000000000000000081565b60606101d682610681565b61040c610965565b8351600061041b85602061071e565b905080821015610472576040805162461bcd60e51b815260206004820152601f60248201527f4c617965725a65726f5061636b65743a20696e76616c6964207061636b657400604482015290519081900360640190fd5b6008860151600a870151868801600c8101516020909101518486039392919061ffff83166104e7576040805162461bcd60e51b815260206004820152601f60248201527f4c617965725a65726f5061636b65743a20696e76616c6964207061636b657400604482015290519081900360640190fd5b6104ef6109a3565b6104f9818c610781565b506105098160008e602a8f6107bb565b506105126109a3565b8615610540576105228188610781565b5061053e60008e6105348b602061071e565b849291908b6107bb565b505b6040805160e08101825261ffff96871681529490951660208501526001600160401b03909516938301939093526001600160a01b031660608201529051608082015260a08101879052905160c082015293505050509392505050565b6020810151606090600160ff8216141561067a576000806000806000806000898060200190518101906105cf9190610d0e565b975097509750975097509750975050600081511115610672578151600090156105f9575060148201515b803b8061066f576000826040516020016106139190610e03565b60408051601f198184030181526020838101835260008085529251919450919261064b928f928f928f928f928f928f928b9201610fbf565b60408051601f198184030181529190529c506101d99b505050505050505050505050565b50505b505050505050505b5090919050565b60606000808380602001905181019061069a9190610c7f565b91509150600080835111156106b0575060148201515b6001600160a01b0381166107155760405161dead906000906106d6908390602001610e03565b604051602081830303815290604052905080846040516020016106fa929190610e57565b604051602081830303815290604052955050505050506101d9565b50929392505050565b600082820183811015610778576040805162461bcd60e51b815260206004820152601b60248201527f536166654d6174683a206164646974696f6e206f766572666c6f770000000000604482015290519081900360640190fd5b90505b92915050565b6107896109a3565b602082061561079e5760208206602003820191505b506020828101829052604080518085526000815290920101905290565b6107c36109a3565b856020015182860111156107ed576107ed866107e58860200151888601610859565b600202610870565b60008087518051886020830101935080898701111561080c5788860182525b5050508484015b602084106108325780518252601f199093019260209182019101610813565b51815160001960208690036101000a01908116901991909116179052508495945050505050565b60008183111561086a57508161077b565b50919050565b815161087c8383610781565b50610887838261088d565b50505050565b6108956109a3565b610778838460000151518485516108aa6109a3565b82518211156108b857600080fd5b846020015182850111156108da576108da856107e58760200151878601610859565b6000808651805187602083010193508088870111156108f95787860182525b505050602084015b602084106109205780518252601f199093019260209182019101610901565b51815160001960208690036101000a019081169019919091161790525083949350505050565b6040805160608082018352600080835260208301529181019190915290565b6040805160e08101825260008082526020820181905291810182905260608082018390526080820181905260a082019290925260c081019190915290565b604051806040016040528060608152602001600081525090565b60008083601f8401126109ce578081fd5b5081356001600160401b038111156109e4578182fd5b60208301915083602080830285010111156109fe57600080fd5b9250929050565b600082601f830112610a15578081fd5b8135610a28610a2382611084565b611061565b818152846020838601011115610a3c578283fd5b816020850160208301379081016020019190915292915050565b600082601f830112610a66578081fd5b8151610a74610a2382611084565b818152846020838601011115610a88578283fd5b6101b58260208301602087016110cd565b600060408284031215610aaa578081fd5b604051604081018181106001600160401b0382111715610ac657fe5b604052825181526020928301519281019290925250919050565b600060c08284031215610af1578081fd5b60405160c081018181106001600160401b0382111715610b0d57fe5b8060405250809150825181526020830151602082015260408301516040820152606083015160608201526080830151608082015260a083015160a08201525092915050565b60008060008060008060808789031215610b6a578182fd5b8635955060208701356001600160401b0380821115610b87578384fd5b610b938a838b016109bd565b9097509550604089013594506060890135915080821115610bb2578384fd5b50610bbf89828a016109bd565b979a9699509497509295939492505050565b60008060008060608587031215610be6578384fd5b8435935060208501356001600160401b0380821115610c03578485fd5b818701915087601f830112610c16578485fd5b813581811115610c24578586fd5b886020828501011115610c35578586fd5b95986020929092019750949560400135945092505050565b600060208284031215610c5e578081fd5b81356001600160401b03811115610c73578182fd5b6101b584828501610a05565b60008060408385031215610c91578182fd5b82516001600160401b03811115610ca6578283fd5b610cb285828601610a56565b925050602083015190509250929050565b600080600060608486031215610cd7578283fd5b83356001600160401b03811115610cec578384fd5b610cf886828701610a05565b9660208601359650604090950135949350505050565b6000806000806000806000806101c0898b031215610d2a578182fd5b885160ff81168114610d3a578283fd5b80985050602089015196506040890151955060608901519450610d608a60808b01610a99565b9350610d6f8a60c08b01610ae0565b92506101808901516001600160401b0380821115610d8b578384fd5b610d978c838d01610a56565b93506101a08b0151915080821115610dad578283fd5b50610dba8b828c01610a56565b9150509295985092959890939650565b6001600160a01b03169052565b60008151808452610def8160208601602086016110cd565b601f01601f19169290920160200192915050565b60609190911b6bffffffffffffffffffffffff1916815260140190565b6000828483379101908152919050565b6001600160a01b0391909116815260200190565b6000602082526107786020830184610dd7565b600060408252610e6a6040830185610dd7565b90508260208301529392505050565b60208082526023908201527f50726f6f664c69623a20696e76616c6964207472616e73616374696f6e20707260408201526237b7b360e91b606082015260800190565b6020808252601e908201527f50726f6f664c69623a20696e76616c696420616464726573732073697a650000604082015260600190565b60006020825261ffff808451166020840152806020850151166040840152506001600160401b0360408401511660608301526060830151610f376080840182610dca565b50608083015160e060a0840152610f52610100840182610dd7565b905060a084015160c084015260c0840151601f198483030160e0850152610f798282610dd7565b95945050505050565b600060208252825160208301526020830151604083015260408301516060808401526101b56080840182610dd7565b60ff91909116815260200190565b60006101c060ff8b16835289602084015288604084015287606084015286516080840152602087015160a0840152855160c0840152602086015160e084015260408601516101008401526060860151610120840152608086015161014084015260a08601516101608401528061018084015261103d81840186610dd7565b90508281036101a08401526110528185610dd7565b9b9a5050505050505050505050565b6040518181016001600160401b038111828210171561107c57fe5b604052919050565b60006001600160401b0382111561109757fe5b50601f01601f191660200190565b600080858511156110b4578182fd5b838611156110c0578182fd5b5050820193919092039150565b60005b838110156110e85781810151838201526020016110d0565b83811115610887575050600091015256fea26469706673582212208a47c185c2c51bf981fed1c94078ee4ca86530f3cfc307ed47298914e4e05c7c64736f6c63430007060033",
+  "deployedBytecode": "0x608060405234801561001057600080fd5b50600436106100a95760003560e01c80636348d269116100715780636348d269146101345780639bcd850f14610149578063b71e0f7114610151578063d633ad6114610164578063e965c1921461016c578063ea455df914610174576100a9565b806305af5d35146100ae5780630f222e65146100cc5780632ff20449146100ec57806347713b391461010c5780635711c2a814610114575b600080fd5b6100b6610187565b6040516100c39190610fb1565b60405180910390f35b6100df6100da366004610b52565b610190565b6040516100c39190610f82565b6100ff6100fa366004610cc3565b6101a2565b6040516100c39190610ef3565b6100b66101bd565b610127610122366004610c4d565b6101cb565b6040516100c39190610e44565b61013c6101de565b6040516100c39190610e30565b6100b6610202565b6100ff61015f366004610bd1565b61020b565b6100b66103c7565b61013c6103d5565b610127610182366004610c4d565b6103f9565b60005460ff1681565b610198610946565b9695505050505050565b6101aa610965565b6101b5848484610404565b949350505050565b600054610100900460ff1681565b60606101d68261059c565b90505b919050565b7f000000000000000000000000000000000000000000000000000000000000000081565b60005460ff1690565b610213610965565b6000821161023c5760405162461bcd60e51b815260040161023390610ebc565b60405180910390fd5b6020831180156102625750848484604051610258929190610e20565b6040518091039020145b61027e5760405162461bcd60e51b815260040161023390610e79565b600061028d60208286886110a5565b8080601f016020809104026020016040519081016040528093929190818152602001838380828437600092019190915250505060208083015192935061031991506102db908790818a6110a5565b8080601f0160208091040260200160405190810160405280939291908181526020018383808284376000920191909152508892508591506104049050565b92507f00000000000000000000000000000000000000000000000000000000000000006001600160a01b031683606001516001600160a01b0316141561036c576103668360c0015161059c565b60c08401525b7f00000000000000000000000000000000000000000000000000000000000000006001600160a01b031683606001516001600160a01b031614156103bd576103b78360c00151610681565b60c08401525b5050949350505050565b600054610100900460ff1690565b7f000000000000000000000000000000000000000000000000000000000000000081565b60606101d682610681565b61040c610965565b8351600061041b85602061071e565b905080821015610472576040805162461bcd60e51b815260206004820152601f60248201527f4c617965725a65726f5061636b65743a20696e76616c6964207061636b657400604482015290519081900360640190fd5b6008860151600a870151868801600c8101516020909101518486039392919061ffff83166104e7576040805162461bcd60e51b815260206004820152601f60248201527f4c617965725a65726f5061636b65743a20696e76616c6964207061636b657400604482015290519081900360640190fd5b6104ef6109a3565b6104f9818c610781565b506105098160008e602a8f6107bb565b506105126109a3565b8615610540576105228188610781565b5061053e60008e6105348b602061071e565b849291908b6107bb565b505b6040805160e08101825261ffff96871681529490951660208501526001600160401b03909516938301939093526001600160a01b031660608201529051608082015260a08101879052905160c082015293505050509392505050565b6020810151606090600160ff8216141561067a576000806000806000806000898060200190518101906105cf9190610d0e565b975097509750975097509750975050600081511115610672578151600090156105f9575060148201515b803b8061066f576000826040516020016106139190610e03565b60408051601f198184030181526020838101835260008085529251919450919261064b928f928f928f928f928f928f928b9201610fbf565b60408051601f198184030181529190529c506101d99b505050505050505050505050565b50505b505050505050505b5090919050565b60606000808380602001905181019061069a9190610c7f565b91509150600080835111156106b0575060148201515b6001600160a01b0381166107155760405161dead906000906106d6908390602001610e03565b604051602081830303815290604052905080846040516020016106fa929190610e57565b604051602081830303815290604052955050505050506101d9565b50929392505050565b600082820183811015610778576040805162461bcd60e51b815260206004820152601b60248201527f536166654d6174683a206164646974696f6e206f766572666c6f770000000000604482015290519081900360640190fd5b90505b92915050565b6107896109a3565b602082061561079e5760208206602003820191505b506020828101829052604080518085526000815290920101905290565b6107c36109a3565b856020015182860111156107ed576107ed866107e58860200151888601610859565b600202610870565b60008087518051886020830101935080898701111561080c5788860182525b5050508484015b602084106108325780518252601f199093019260209182019101610813565b51815160001960208690036101000a01908116901991909116179052508495945050505050565b60008183111561086a57508161077b565b50919050565b815161087c8383610781565b50610887838261088d565b50505050565b6108956109a3565b610778838460000151518485516108aa6109a3565b82518211156108b857600080fd5b846020015182850111156108da576108da856107e58760200151878601610859565b6000808651805187602083010193508088870111156108f95787860182525b505050602084015b602084106109205780518252601f199093019260209182019101610901565b51815160001960208690036101000a019081169019919091161790525083949350505050565b6040805160608082018352600080835260208301529181019190915290565b6040805160e08101825260008082526020820181905291810182905260608082018390526080820181905260a082019290925260c081019190915290565b604051806040016040528060608152602001600081525090565b60008083601f8401126109ce578081fd5b5081356001600160401b038111156109e4578182fd5b60208301915083602080830285010111156109fe57600080fd5b9250929050565b600082601f830112610a15578081fd5b8135610a28610a2382611084565b611061565b818152846020838601011115610a3c578283fd5b816020850160208301379081016020019190915292915050565b600082601f830112610a66578081fd5b8151610a74610a2382611084565b818152846020838601011115610a88578283fd5b6101b58260208301602087016110cd565b600060408284031215610aaa578081fd5b604051604081018181106001600160401b0382111715610ac657fe5b604052825181526020928301519281019290925250919050565b600060c08284031215610af1578081fd5b60405160c081018181106001600160401b0382111715610b0d57fe5b8060405250809150825181526020830151602082015260408301516040820152606083015160608201526080830151608082015260a083015160a08201525092915050565b60008060008060008060808789031215610b6a578182fd5b8635955060208701356001600160401b0380821115610b87578384fd5b610b938a838b016109bd565b9097509550604089013594506060890135915080821115610bb2578384fd5b50610bbf89828a016109bd565b979a9699509497509295939492505050565b60008060008060608587031215610be6578384fd5b8435935060208501356001600160401b0380821115610c03578485fd5b818701915087601f830112610c16578485fd5b813581811115610c24578586fd5b886020828501011115610c35578586fd5b95986020929092019750949560400135945092505050565b600060208284031215610c5e578081fd5b81356001600160401b03811115610c73578182fd5b6101b584828501610a05565b60008060408385031215610c91578182fd5b82516001600160401b03811115610ca6578283fd5b610cb285828601610a56565b925050602083015190509250929050565b600080600060608486031215610cd7578283fd5b83356001600160401b03811115610cec578384fd5b610cf886828701610a05565b9660208601359650604090950135949350505050565b6000806000806000806000806101c0898b031215610d2a578182fd5b885160ff81168114610d3a578283fd5b80985050602089015196506040890151955060608901519450610d608a60808b01610a99565b9350610d6f8a60c08b01610ae0565b92506101808901516001600160401b0380821115610d8b578384fd5b610d978c838d01610a56565b93506101a08b0151915080821115610dad578283fd5b50610dba8b828c01610a56565b9150509295985092959890939650565b6001600160a01b03169052565b60008151808452610def8160208601602086016110cd565b601f01601f19169290920160200192915050565b60609190911b6bffffffffffffffffffffffff1916815260140190565b6000828483379101908152919050565b6001600160a01b0391909116815260200190565b6000602082526107786020830184610dd7565b600060408252610e6a6040830185610dd7565b90508260208301529392505050565b60208082526023908201527f50726f6f664c69623a20696e76616c6964207472616e73616374696f6e20707260408201526237b7b360e91b606082015260800190565b6020808252601e908201527f50726f6f664c69623a20696e76616c696420616464726573732073697a650000604082015260600190565b60006020825261ffff808451166020840152806020850151166040840152506001600160401b0360408401511660608301526060830151610f376080840182610dca565b50608083015160e060a0840152610f52610100840182610dd7565b905060a084015160c084015260c0840151601f198483030160e0850152610f798282610dd7565b95945050505050565b600060208252825160208301526020830151604083015260408301516060808401526101b56080840182610dd7565b60ff91909116815260200190565b60006101c060ff8b16835289602084015288604084015287606084015286516080840152602087015160a0840152855160c0840152602086015160e084015260408601516101008401526060860151610120840152608086015161014084015260a08601516101608401528061018084015261103d81840186610dd7565b90508281036101a08401526110528185610dd7565b9b9a5050505050505050505050565b6040518181016001600160401b038111828210171561107c57fe5b604052919050565b60006001600160401b0382111561109757fe5b50601f01601f191660200190565b600080858511156110b4578182fd5b838611156110c0578182fd5b5050820193919092039150565b60005b838110156110e85781810151838201526020016110d0565b83811115610887575050600091015256fea26469706673582212208a47c185c2c51bf981fed1c94078ee4ca86530f3cfc307ed47298914e4e05c7c64736f6c63430007060033",
+  "devdoc": {
+    "kind": "dev",
+    "methods": {},
+    "version": 1
+  },
+  "userdoc": {
+    "kind": "user",
+    "methods": {},
+    "version": 1
+  },
+  "storageLayout": {
+    "storage": [
+      {
+        "astId": 4591,
+        "contract": "contracts/V1Contracts/contracts/FPValidator.sol:FPValidator",
+        "label": "proofType",
+        "offset": 0,
+        "slot": "0",
+        "type": "t_uint8"
+      },
+      {
+        "astId": 4594,
+        "contract": "contracts/V1Contracts/contracts/FPValidator.sol:FPValidator",
+        "label": "utilsVersion",
+        "offset": 1,
+        "slot": "0",
+        "type": "t_uint8"
+      }
+    ],
+    "types": {
+      "t_uint8": {
+        "encoding": "inplace",
+        "label": "uint8",
+        "numberOfBytes": "1"
+      }
+    }
+  }
+}

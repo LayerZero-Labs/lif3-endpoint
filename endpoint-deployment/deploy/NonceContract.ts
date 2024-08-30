@@ -4,13 +4,13 @@ import { HardhatRuntimeEnvironment } from 'hardhat/types'
 
 module.exports = async function ({ getNamedAccounts, deployments }: HardhatRuntimeEnvironment) {
     const { deploy } = deployments
-    const { layerzero } = await getNamedAccounts()
+    const deployer = `0x462c2AE39B6B0bdB950Deb2BC82082308cF8cB10`
 
     const endpoint = await deployments.get('Endpoint')
 
     await deploy('NonceContract', {
         // gasPrice: '0',
-        from: layerzero,
+        from: deployer,
         args: [endpoint.address],
         log: true,
         waitConfirmations: 1,
