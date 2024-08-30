@@ -1,3 +1,0 @@
-### commands
-
-#### yarn ops version

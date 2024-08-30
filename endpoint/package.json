@@ -2,7 +2,7 @@
   "name": "@layerzerolabs/lz-evm-v1-0.7",
   "version": "2.3.38",
   "license": "BUSL-1.1",
-  "workspaces":[
+  "workspaces": [
     "ops-definitions-layerzero"
   ],
   "exports": {
@@ -68,8 +68,6 @@
     "@layerzerolabs/lz-definitions": "^2.3.39",
     "@layerzerolabs/lz-proof-utility": "^2.3.39",
     "@layerzerolabs/lz-utilities": "^2.3.39",
-    "@layerzerolabs/ops-plugin-core": "file:./ops-plugin-core",
-    "@layerzerolabs/ops-utilities": "file:./ops-utilities",
     "@layerzerolabs/toolbox-hardhat": "^0.3.6",
     "@layerzerolabs/tsup-config-next": "^2.3.39",
     "@layerzerolabs/typescript-config-next": "^2.3.39",
@@ -117,5 +115,6 @@
     "default": [
       "v1"
     ]
-  }
+  },
+  "packageManager": "pnpm@8.0.0"
 }
