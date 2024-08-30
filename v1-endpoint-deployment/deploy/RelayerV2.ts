@@ -1,8 +1,6 @@
 import '@nomiclabs/hardhat-ethers'
 import 'hardhat-deploy'
 
-import { addresses as bridgeAddresses } from '@stargatefinance/stg-evm-v1/deployed/Bridge'
-import { addresses as composerAddresses } from '@stargatefinance/stg-evm-v1/deployed/StargateComposer'
 import { ethers } from 'ethers'
 import { HardhatRuntimeEnvironment } from 'hardhat/types'
 
@@ -13,7 +11,7 @@ import { getPriceFeedV2Address } from './utils'
 export const NATIVE_DECIMALS_RATE: { [chain in Chain]?: string } = {
     [Chain.TRON]: ethers.utils.parseUnits('1', 6).toString(),
     [Chain.TRONDEV]: ethers.utils.parseUnits('1', 6).toString(),
-    [Chain.HEDERA]: ethers.utils.parseUnits('1', 8).toString()
+    [Chain.HEDERA]: ethers.utils.parseUnits('1', 8).toString(),
 }
 export function getNativeDecimalsRate(networkName: string): string {
     return NATIVE_DECIMALS_RATE[networkToChain(networkName)] ?? ethers.utils.parseUnits('1', 18).toString()
@@ -35,16 +33,8 @@ module.exports = async function (hre: HardhatRuntimeEnvironment) {
     }
 
     // by default use whats configured
-    let bridgeAddr = bridgeAddresses[hre.network.name]
-    let composerAddr = composerAddresses[hre.network.name] //'0x3b83D454A50aBe06d94cb0d5d367825e190bDA8F'
-
-    // WARNING:
-    // IF THE BRIDGE IS UNDEFINED, SET 0x0 FOR COMPOSER TOO! (Because stargate doesnt exist)
-    console.log(`${hre.network.name} - ${bridgeAddr}: bridgeAddr`)
-    if (!bridgeAddr) {
-        bridgeAddr = hre.ethers.constants.AddressZero
-        composerAddr = hre.ethers.constants.AddressZero
-    }
+    const bridgeAddr = hre.ethers.constants.AddressZero
+    const composerAddr = hre.ethers.constants.AddressZero
 
     // print the FINAL bridge and composer address during deployment/upgrade
     console.log(`[${hre.network.name}] Stargate Bridge Address: ${bridgeAddr}`)
