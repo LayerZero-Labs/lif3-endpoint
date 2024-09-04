@@ -28,7 +28,7 @@ const func: DeployFunction = async function (hre: HardhatRuntimeEnvironment) {
         args: [endpointId, deployer],
         // if set it to true, will not attempt to deploy
         // even if the contract deployed under the same name is different
-        skipIfAlreadyDeployed: true,
+        skipIfAlreadyDeployed: false,
         log: true,
         waitConfirmations: 1,
     })

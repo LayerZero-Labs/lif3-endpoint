@@ -32,7 +32,7 @@ module.exports = async function (hre: HardhatRuntimeEnvironment) {
         from: relayer,
         log: true,
         waitConfirmations: 1,
-        // skipIfAlreadyDeployed: true,
+        skipIfAlreadyDeployed: false,
         proxy: {
             owner: proxyAdmin,
             proxyContract: 'OptimizedTransparentProxy',
@@ -50,8 +50,8 @@ module.exports = async function (hre: HardhatRuntimeEnvironment) {
     })
 }
 module.exports.tags = ['PriceFeed', 'test']
-module.exports.skip = async ({ network }) =>
-    new Promise((resolve) => {
-        resolve(network.name !== 'hardhat')
-        // only use for tests
-    })
+// module.exports.skip = async ({ network }) =>
+//     new Promise((resolve) => {
+//         resolve(network.name !== 'hardhat')
+//         // only use for tests
+//     })

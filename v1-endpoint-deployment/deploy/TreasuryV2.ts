@@ -14,7 +14,7 @@ module.exports = async function ({ getNamedAccounts, deployments }: HardhatRunti
         args: [ultraLightNodeV2.address],
         log: true,
         waitConfirmations: 1,
-        skipIfAlreadyDeployed: true,
+        skipIfAlreadyDeployed: false,
     })
 }
 
