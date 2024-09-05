@@ -3,7 +3,7 @@ Lif3's LayerZero Endpoint
 
 ## Deployment:
 
-In config.json set endpointId to your required number.
+In `config.json` set endpointId to your desired number.
 
 In both `v1-endpoint-deployment` and `v2-endpoint-deployment` create a .env file and set these to your deployer's wallet:
 ```
@@ -28,6 +28,8 @@ cd to `v1-endpoint-deployment`
 
 run:
 `pnpm install`
+
+Note: this is setup to use avalanche-testnet. These can be easily switched to any network by doing a search and replace on this README.md
 
 ```
 npx hardhat deploy --network avalanche-testnet --tags PriceFeed
