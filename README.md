@@ -3,10 +3,24 @@ Lif3's LayerZero Endpoint
 
 ## Deployment:
 
-Create a .env file and set these to your deployer's wallet:
+In config.json set endpointId to your required number.
+
+In both `v1-endpoint-deployment` and `v2-endpoint-deployment` create a .env file and set these to your deployer's wallet:
 ```
 MNEMONIC=
 PRIVATE_KEY=
+```
+
+Also make sure to do adjust the hardhat configs accordingly based on your needs. It's currently setup to deploy everything to avalanche-testnet.
+You should only need to modify networks
+```
+    networks: {
+        'avalanche-testnet': {
+            eid: EndpointId.AVALANCHE_V2_TESTNET,
+            url: process.env.RPC_URL_FUJI || 'https://rpc.ankr.com/avalanche_fuji',
+            accounts,
+        },
+    },
 ```
 
 ### V1 Endpoint:

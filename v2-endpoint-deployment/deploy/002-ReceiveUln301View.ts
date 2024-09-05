@@ -6,8 +6,7 @@ module.exports = async function (hre: HardhatRuntimeEnvironment): Promise<boolea
     const { deployments, getNamedAccounts } = hre
     const { deploy } = deployments
     const { proxyAdmin } = await getNamedAccounts()
-
-    const deployer = `0x462c2AE39B6B0bdB950Deb2BC82082308cF8cB10`
+    const { deployer } = await getNamedAccounts()
 
     // get the EndpointV1 address
     const endpointAddr = getDeployedV1Address(hre, 'Endpoint')

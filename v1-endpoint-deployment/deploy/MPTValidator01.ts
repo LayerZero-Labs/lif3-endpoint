@@ -1,3 +1,5 @@
+import * as fs from 'fs'
+
 import '@nomiclabs/hardhat-ethers'
 import 'hardhat-deploy'
 import { constants } from 'ethers'
@@ -7,7 +9,11 @@ module.exports = async function (hre: HardhatRuntimeEnvironment) {
     const { deploy } = hre.deployments
     const { getNamedAccounts } = hre
     const { deployer } = await getNamedAccounts()
-    const endpointId = 10106
+
+    // get endpoint from config
+    const configFile = fs.readFileSync('../config.json', 'utf-8')
+    const config = JSON.parse(configFile)
+    const endpointId = config.endpointId
 
     const bridgeAddr = constants.AddressZero
     const stgAddr = constants.AddressZero

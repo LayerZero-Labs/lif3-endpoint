@@ -9,7 +9,8 @@ module.exports = async function (hre: HardhatRuntimeEnvironment): Promise<boolea
     // const { deployments, getNamedAccounts, ethers } = hre
     const { deployments } = hre
     const { deploy } = deployments
-    const deployer = `0x462c2AE39B6B0bdB950Deb2BC82082308cF8cB10`
+    const { getNamedAccounts } = hre
+    const { deployer } = await getNamedAccounts()
 
     console.log(`DVNFeeLib deployer: ${deployer}`)
 

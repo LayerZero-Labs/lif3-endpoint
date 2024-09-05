@@ -1,3 +1,5 @@
+import * as fs from 'fs'
+
 import { HardhatRuntimeEnvironment } from 'hardhat/types'
 import { DeployFunction, Deployment } from 'hardhat-deploy/types'
 import '@nomiclabs/hardhat-ethers'
@@ -10,13 +12,17 @@ import 'hardhat-deploy'
 const func: DeployFunction = async function (hre: HardhatRuntimeEnvironment) {
     const salt = hre.ethers.utils.keccak256(Buffer.from('layerzero-ep-v2')) // never change this
 
-    const { deployments } = hre
+    const { deployments, getNamedAccounts } = hre
     const { deploy } = deployments
+    const { deployer } = await getNamedAccounts()
 
-    const deployer = `0x462c2AE39B6B0bdB950Deb2BC82082308cF8cB10`
     console.log(`deployer: ${deployer}`)
     console.log(`EndpointV2 deployer: ${deployer}`)
-    const endpointId = 10106
+
+    // get endpoint from config
+    const configFile = fs.readFileSync('../config.json', 'utf-8')
+    const config = JSON.parse(configFile)
+    const endpointId = config.endpointId
 
     console.log(`EndpointV2 salt: ${salt}`)
     console.log(`EndpointV2 args: [${endpointId}, ${deployer}]`)

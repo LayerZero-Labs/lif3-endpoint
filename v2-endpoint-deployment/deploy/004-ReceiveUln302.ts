@@ -6,7 +6,8 @@ import { getDeployedAddress } from './util'
 
 module.exports = async function (hre: HardhatRuntimeEnvironment): Promise<boolean> {
     const { deploy } = hre.deployments
-    const deployer = `0x462c2AE39B6B0bdB950Deb2BC82082308cF8cB10`
+    const { getNamedAccounts } = hre
+    const { deployer } = await getNamedAccounts()
 
     // get the EndpointV2 address
     const endpointAddr = getDeployedAddress(hre, 'EndpointV2')
