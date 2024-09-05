@@ -62,6 +62,24 @@ const config: HardhatUserConfig = {
         deployer: {
             default: 0, // wallet address of index[0], of the mnemonic in .env
         },
+        verifier: {
+            default: 0,
+        },
+        relayer: {
+            default: 0,
+        },
+        proxyAdmin: {
+            default: 0,
+        },
+        relayerAdmin: {
+            default: 0,
+        },
+    },
+    layerZero: {
+        // You can tell hardhat toolbox not to include any deployments (hover over the property name to see full docs)
+        deploymentSourcePackages: [],
+        // You can tell hardhat not to include any artifacts either
+        artifactSourcePackages: [],
     },
 }
 

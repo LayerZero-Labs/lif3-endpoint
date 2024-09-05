@@ -14,15 +14,13 @@ function getDependencies(): string[] {
 module.exports = async function (hre: HardhatRuntimeEnvironment) {
     const { deployments, getNamedAccounts } = hre
     const { deploy } = deployments
-    // const { proxyAdmin } = await getNamedAccounts()
+    const { deployer } = await getNamedAccounts()
+    const proxyAdmin = deployer
 
-    // const { relayer } = await getNamedAccounts()
-    const relayer = `0x462c2AE39B6B0bdB950Deb2BC82082308cF8cB10`
+    const relayer = deployer
     if (!relayer) {
         throw new Error('Relayer address is not defined in namedAccounts')
     }
-
-    const proxyAdmin = `0x462c2AE39B6B0bdB950Deb2BC82082308cF8cB10`
 
     let endpoint: Deployment
     try {
@@ -33,10 +31,6 @@ module.exports = async function (hre: HardhatRuntimeEnvironment) {
         throw error
     }
 
-    // const proxyContract = isZKSyncBasedChain(networkToChain(hre.network.name))
-    //     ? 'TransparentUpgradeableProxy'
-    //     : 'OptimizedTransparentProxy'
-    // Asuming lif3 is not a ZKSyncBasedChain
     const proxyContract = 'OptimizedTransparentProxy'
 
     try {
@@ -49,8 +43,8 @@ module.exports = async function (hre: HardhatRuntimeEnvironment) {
             // gasLimit: '1000000',
             skipIfAlreadyDeployed: false,
             proxy: {
-                // owner: proxyAdmin,
-                owner: '0x0804a6e2798F42C7F3c97215DdF958d5500f8ec8',
+                owner: proxyAdmin,
+                // owner: '0x0804a6e2798F42C7F3c97215DdF958d5500f8ec8',
                 proxyContract: proxyContract,
                 execute: {
                     init: {

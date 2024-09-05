@@ -30,7 +30,7 @@ module.exports = async function (hre: HardhatRuntimeEnvironment): Promise<boolea
         log: true,
         waitConfirmations: 1,
         // gasPrice: '0',
-        // skipIfAlreadyDeployed: true,
+        skipIfAlreadyDeployed: false,
         proxy: {
             owner: proxyAdmin,
             proxyContract: proxyContract,

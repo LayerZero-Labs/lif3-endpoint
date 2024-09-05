@@ -1,11 +1,11 @@
 import { HardhatRuntimeEnvironment } from 'hardhat/types'
 
-import { networkToChain, networkToStage } from '@layerzerolabs/lz-definitions'
-import { LayerZeroConfigManager } from '@layerzerolabs/ops-utilities'
+// import { networkToChain, networkToStage } from '@layerzerolabs/lz-definitions'
+// import { LayerZeroConfigManager } from '@layerzerolabs/ops-utilities'
 
 import 'hardhat-deploy'
 import '@nomiclabs/hardhat-ethers'
-import { TREASURY_GAS_FOR_FEE_CAP, TREASURY_GAS_LIMIT } from './configs/deployConfig'
+// import { TREASURY_GAS_FOR_FEE_CAP, TREASURY_GAS_LIMIT } from './configs/deployConfig'
 import { getDeployedAddress } from './util'
 
 // config
@@ -36,8 +36,8 @@ module.exports = async function (hre: HardhatRuntimeEnvironment): Promise<boolea
     // get the EndpointV2 address
     const endpointAddr = getDeployedAddress(hre, 'EndpointV2')
 
-    // const gasPrice = (await hre.ethers.provider.getGasPrice()).mul(15).div(10)
-    await deploy('SendUln302', {
+    // Deploy SendUln302
+    const deployResult = await deploy('SendUln302', {
         from: deployer,
         args: [endpointAddr, treasuryGasLimit, treasuryGasForFeeCap],
         skipIfAlreadyDeployed: false,
@@ -45,6 +45,12 @@ module.exports = async function (hre: HardhatRuntimeEnvironment): Promise<boolea
         waitConfirmations: 1,
         // gasPrice: '0',
     })
+
+    if (deployResult.newlyDeployed) {
+        console.log('Contract was newly deployed.')
+    } else {
+        console.log('Contract was not newly deployed.')
+    }
     return Promise.resolve(false)
 }
 

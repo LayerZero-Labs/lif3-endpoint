@@ -4,7 +4,7 @@ import { HardhatRuntimeEnvironment } from 'hardhat/types'
 
 module.exports = async function ({ getNamedAccounts, deployments }: HardhatRuntimeEnvironment) {
     const { deploy } = deployments
-    const deployer = `0x462c2AE39B6B0bdB950Deb2BC82082308cF8cB10`
+    const { deployer } = await getNamedAccounts()
 
     const ultraLightNodeV2 = await deployments.get('UltraLightNodeV2')
 
@@ -17,6 +17,5 @@ module.exports = async function ({ getNamedAccounts, deployments }: HardhatRunti
         skipIfAlreadyDeployed: false,
     })
 }
-
 module.exports.tags = ['TreasuryV2', 'test', 'v2']
 module.exports.dependencies = ['UltraLightNodeV2']

@@ -1,6 +1,6 @@
 import { HardhatRuntimeEnvironment } from 'hardhat/types'
 import { Deployment } from 'hardhat-deploy/dist/types'
-import invariant from 'tiny-invariant'
+// import invariant from 'tiny-invariant'
 import 'hardhat-deploy'
 import '@nomiclabs/hardhat-ethers'
 
@@ -13,7 +13,6 @@ import {
     networkToEnv,
     networkToStage,
 } from '@layerzerolabs/lz-definitions'
-import { ALT_TOKEN_CHAINS } from '@layerzerolabs/ops-definitions-layerzero'
 
 import { EXECUTOR_ADMINS, EXECUTOR_ROLE_ADMIN } from './configs/deployConfig'
 import { getDeployedAddress, getUltraLightNodeV2Address, getUltraLightNodeV2AltTokenAddress } from './util'
@@ -27,27 +26,20 @@ module.exports = async function (hre: HardhatRuntimeEnvironment) {
     const { deployments, getNamedAccounts } = hre
     const { deploy } = deployments
     const { relayer, proxyAdmin, relayerAdmin } = await getNamedAccounts()
-    invariant(relayer, 'relayer is not set')
+    // invariant(relayer, 'relayer is not set')
     console.log(`Executor deployer: ${relayer}`)
-    invariant(proxyAdmin, 'proxyAdmin is not set')
+    // invariant(proxyAdmin, 'proxyAdmin is not set')
     console.log(`Executor proxyOwner: ${proxyAdmin}`)
-    invariant(relayerAdmin, 'relayerAdmin is not set')
+    // invariant(relayerAdmin, 'relayerAdmin is not set')
     console.log(`Executor admin: ${relayerAdmin}`)
 
     const endpointAddr = getDeployedAddress(hre, 'EndpointV2')
 
-    let receiveUln301Address = hre.ethers.constants.AddressZero
-    let sendUln301Address: string | undefined
-    if (
-        hre.network.name == 'hardhat' ||
-        (isNetworkEndpointIdSupported(hre.network.name, EndpointVersion.V1) &&
-            !ALT_TOKEN_CHAINS.includes(networkToChain(hre.network.name)))
-    ) {
-        const sendUln301: Deployment = await deployments.get('SendUln301')
-        const receiveUln301: Deployment = await deployments.get('ReceiveUln301')
-        sendUln301Address = sendUln301.address
-        receiveUln301Address = receiveUln301.address
-    }
+    const sendUln301: Deployment = await deployments.get('SendUln301')
+    const receiveUln301: Deployment = await deployments.get('ReceiveUln301')
+    const sendUln301Address = sendUln301.address
+    const receiveUln301Address = receiveUln301.address
+
     const priceFeed: Deployment = await deployments.get('PriceFeed')
     const sendUln302: Deployment = await deployments.get('SendUln302')
     // only 301, 302 are supported
@@ -78,7 +70,7 @@ module.exports = async function (hre: HardhatRuntimeEnvironment) {
         const { relayerRoleAdmin } = await getNamedAccounts()
         roleAdmin = relayerRoleAdmin
     }
-    invariant(roleAdmin, 'roleAdmin is not set')
+    // invariant(roleAdmin, 'roleAdmin is not set')
     console.log(`Executor roleAdmin: ${roleAdmin}`)
 
     const proxyContract = isZKSyncBasedChain(networkToChain(hre.network.name))
@@ -93,7 +85,7 @@ module.exports = async function (hre: HardhatRuntimeEnvironment) {
         log: true,
         waitConfirmations: 1,
         // gasPrice: gasPrice,
-        // skipIfAlreadyDeployed: true,
+        skipIfAlreadyDeployed: false,
         proxy: {
             owner: proxyAdmin,
             proxyContract: proxyContract,

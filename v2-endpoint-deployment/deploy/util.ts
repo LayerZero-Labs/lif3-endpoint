@@ -40,7 +40,7 @@ export function getEndpointV1Address(hre: HardhatRuntimeEnvironment): string {
 }
 
 export function getUltraLightNodeV2Address(hre: HardhatRuntimeEnvironment): string {
-    const ultraLightNodeV2Json = `${EVM07ROOT}/deployments/${hre.network.name}/UltraLightNodeV2.json`
+    const ultraLightNodeV2Json = `../../v1-endpoint-deployment/deployments/${hre.network.name}/UltraLightNodeV2.json`
     if (fs.existsSync(ultraLightNodeV2Json)) {
         const ultraLightNodeV2 = JSON.parse(fs.readFileSync(ultraLightNodeV2Json, 'utf-8').toString())
         if (!ultraLightNodeV2.address || ultraLightNodeV2.address === '') {

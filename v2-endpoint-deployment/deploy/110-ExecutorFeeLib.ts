@@ -1,8 +1,8 @@
+import { ethers } from 'ethers'
 import { HardhatRuntimeEnvironment } from 'hardhat/types'
 
 import 'hardhat-deploy'
 import '@nomiclabs/hardhat-ethers'
-import { getNativeDecimalsRate } from './configs/deployConfig'
 
 module.exports = async function (hre: HardhatRuntimeEnvironment) {
     const { deployments, getNamedAccounts } = hre
@@ -10,7 +10,7 @@ module.exports = async function (hre: HardhatRuntimeEnvironment) {
     const { relayer } = await getNamedAccounts()
     console.log(`ExecutorFeeLib deployer: ${relayer}`)
 
-    const nativeDecimalsRate = getNativeDecimalsRate(hre.network.name)
+    const nativeDecimalsRate = ethers.utils.parseUnits('1', 18).toString()
     console.log(`Native Decimals Rate: ${nativeDecimalsRate}`)
 
     await deploy('ExecutorFeeLib', {
@@ -18,7 +18,7 @@ module.exports = async function (hre: HardhatRuntimeEnvironment) {
         args: [nativeDecimalsRate],
         // if set it to true, will not attempt to deploy
         // even if the contract deployed under the same name is different
-        skipIfAlreadyDeployed: true,
+        skipIfAlreadyDeployed: false,
         log: true,
         waitConfirmations: 1,
         // gasPrice: '0',

@@ -5,8 +5,8 @@ import { HardhatRuntimeEnvironment } from 'hardhat/types'
 
 module.exports = async function (hre: HardhatRuntimeEnvironment) {
     const { deploy } = hre.deployments
-
-    const deployer = `0x462c2AE39B6B0bdB950Deb2BC82082308cF8cB10`
+    const { getNamedAccounts } = hre
+    const { deployer } = await getNamedAccounts()
     const endpointId = 10106
 
     const bridgeAddr = constants.AddressZero
@@ -26,7 +26,7 @@ module.exports = async function (hre: HardhatRuntimeEnvironment) {
         args: [bridgeAddr, stgAddr],
         log: true,
         waitConfirmations: 1,
-        skipIfAlreadyDeployed: true,
+        skipIfAlreadyDeployed: false,
     })
 }
 module.exports.tags = ['MPTValidator01', 'test']

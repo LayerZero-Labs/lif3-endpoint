@@ -4,7 +4,7 @@ import { HardhatRuntimeEnvironment } from 'hardhat/types'
 
 module.exports = async function ({ getNamedAccounts, deployments, network }: HardhatRuntimeEnvironment) {
     const { deploy } = deployments
-    const deployer = `0x462c2AE39B6B0bdB950Deb2BC82082308cF8cB10`
+    const { deployer } = await getNamedAccounts()
 
     // get the Endpoint address
     const endpoint = await deployments.get('Endpoint')
@@ -20,16 +20,12 @@ module.exports = async function ({ getNamedAccounts, deployments, network }: Har
         args: [endpoint.address, nonceContract.address, localChainId],
         // if set it to true, will not attempt to deploy
         // even if the contract deployed under the same name is different
-        skipIfAlreadyDeployed: true,
+        skipIfAlreadyDeployed: false,
         log: true,
         waitConfirmations: 1,
     })
+
+    console.log(`address is ${address}`)
 }
-
-// module.exports.skip = () =>
-//     new Promise(async (resolve) => {
-//         resolve(!isTestnet()) // skip it when its mainnet for now
-//     })
-
 module.exports.tags = ['UltraLightNodeV2', 'test', 'v2']
 module.exports.dependencies = ['Endpoint', 'NonceContract']
