@@ -3,7 +3,7 @@ Lif3's LayerZero Endpoint
 
 ## Deployment:
 
-Create a .env file and set to your deployers wallet:
+Create a .env file and set these to your deployer's wallet:
 ```
 MNEMONIC=
 PRIVATE_KEY=
