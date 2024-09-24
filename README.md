@@ -22,7 +22,7 @@ Lif3's LayerZero Endpoint
    bash -c 'mnemonic="Your mnemonic phrase here"; for dir in . v1-endpoint-deployment v2-endpoint-deployment; do echo "MNEMONIC=$mnemonic" > "$dir/.env"; done; echo "Environment setup complete."'
    ```
 
-   Replace "Your mnemonic phrase here" with your actual mnemonic phrase. This command will create `.env` files in the root directory and both endpoint directories.
+   Replace "Your mnemonic phrase here" with the actual mnemonic phrase of your deployer. This command will create `.env` files in the endpoint directories.
 
 3. Your environment is now set up and ready to use.
 
@@ -31,12 +31,6 @@ Note: Make sure to keep your mnemonic secure and never share it publicly.
 ## Deployment:
 
 In `config.json` set endpointV1Id to your desired number.
-
-In both `v1-endpoint-deployment` and `v2-endpoint-deployment` create a .env file and set these to your deployer's wallet:
-```
-MNEMONIC=
-PRIVATE_KEY=
-```
 
 Also make sure to do adjust the hardhat configs accordingly based on your needs. It's currently setup to deploy everything to avalanche-testnet.
 You should only need to modify networks
