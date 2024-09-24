@@ -14,8 +14,8 @@ module.exports = async function ({ getNamedAccounts, deployments }: HardhatRunti
         args: [ultraLightNodeV2.address],
         log: true,
         waitConfirmations: 1,
-        skipIfAlreadyDeployed: false,
+        skipIfAlreadyDeployed: true,
     })
 }
-module.exports.tags = ['TreasuryV2', 'test', 'v2']
+module.exports.tags = ['TreasuryV2']
 module.exports.dependencies = ['UltraLightNodeV2']

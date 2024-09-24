@@ -17,7 +17,7 @@ module.exports = async function (hre: HardhatRuntimeEnvironment) {
         from: relayer,
         log: true,
         waitConfirmations: 1,
-        skipIfAlreadyDeployed: false,
+        skipIfAlreadyDeployed: true,
         proxy: {
             owner: proxyAdmin,
             proxyContract: 'OptimizedTransparentProxy',
@@ -34,4 +34,4 @@ module.exports = async function (hre: HardhatRuntimeEnvironment) {
         },
     })
 }
-module.exports.tags = ['PriceFeed', 'test']
+module.exports.tags = ['PriceFeed']

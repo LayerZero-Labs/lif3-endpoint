@@ -2,7 +2,6 @@ import '@nomiclabs/hardhat-ethers'
 import 'hardhat-deploy'
 import { HardhatRuntimeEnvironment } from 'hardhat/types'
 
-
 module.exports = async function ({ getNamedAccounts, deployments }: HardhatRuntimeEnvironment) {
     const { deploy } = deployments
     const { deployer } = await getNamedAccounts()
@@ -15,9 +14,9 @@ module.exports = async function ({ getNamedAccounts, deployments }: HardhatRunti
         args: [endpoint.address],
         log: true,
         waitConfirmations: 1,
-        skipIfAlreadyDeployed: false,
+        skipIfAlreadyDeployed: true,
     })
 }
 
-module.exports.tags = ['NonceContract', 'test', 'v2']
+module.exports.tags = ['NonceContract']
 module.exports.dependencies = ['Endpoint']

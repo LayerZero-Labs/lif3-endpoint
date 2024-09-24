@@ -3,19 +3,17 @@ import 'hardhat-deploy'
 
 import { HardhatRuntimeEnvironment } from 'hardhat/types'
 
-import { EndpointVersion, Environment, isNetworkEndpointIdSupported, networkToEnv } from '@layerzerolabs/lz-definitions'
+import { EndpointVersion, Environment, networkToEnv } from '@layerzerolabs/lz-definitions'
 
 import { getEndpointV1Address, tryGetDeployedV1Address } from './util'
+
+import * as fs from 'fs';
 
 module.exports = async function (hre: HardhatRuntimeEnvironment): Promise<boolean> {
     const { deploy } = hre.deployments
     const { getNamedAccounts } = hre
     const { deployer } = await getNamedAccounts()
 
-    if (hre.network.name !== 'hardhat' && !isNetworkEndpointIdSupported(hre.network.name, EndpointVersion.V1)) {
-        console.log(`network ${hre.network.name} is not supported v1, skip deploy SendUln301`)
-        return Promise.resolve(false)
-    }
     // Note: Do EndpointV1 deployment first, then move the NonceContract Deployment from the v1 to the v2
     // re-use endpointV1 NonceContract
     let nonceContractAddress = tryGetDeployedV1Address(hre, 'NonceContract')
@@ -29,9 +27,11 @@ module.exports = async function (hre: HardhatRuntimeEnvironment): Promise<boolea
     }
     const treasuryFeeHandler = await hre.deployments.get('TreasuryFeeHandler')
 
-    const treasuryGasLimit = 200000
-    const treasuryGasForFeeCap = 100000
-    const localChainId = 10106
+    const configFile = fs.readFileSync('../config.json', 'utf-8')
+    const config = JSON.parse(configFile)
+    const endpointId = config.endpointV2Id
+    const treasuryGasLimit = ethers.utils.parseEther(config.treasuryGasLimit.toString())
+    const treasuryGasForFeeCap = ethers.utils.parseEther(config.treasuryGasForFeeCap.toString())
 
     await deploy('SendUln301', {
         from: deployer,
@@ -40,22 +40,16 @@ module.exports = async function (hre: HardhatRuntimeEnvironment): Promise<boolea
             treasuryGasLimit,
             treasuryGasForFeeCap,
             nonceContractAddress,
-            localChainId,
+            endpointId,
             treasuryFeeHandler.address,
         ],
         // if set it to true, will not attempt to deploy
         // even if the contract deployed under the same name is different
-        skipIfAlreadyDeployed: false,
+        skipIfAlreadyDeployed: true,
         log: true,
         waitConfirmations: 1,
         // gasPrice: '0',
     })
-    return Promise.resolve(false)
 }
 
-module.exports.tags = ['SendUln301', 'test']
-// module.exports.dependencies = ['TreasuryFeeHandler', 'NonceContractMock']
-// module.exports.skip = async ({ network }: HardhatRuntimeEnvironment) =>
-//     new Promise((resolve) => {
-//         resolve(ALT_TOKEN_CHAINS.includes(networkToChain(network.name)))
-//     })
+module.exports.tags = ['SendUln301']

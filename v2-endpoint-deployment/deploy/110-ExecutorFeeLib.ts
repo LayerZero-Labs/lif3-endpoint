@@ -18,11 +18,11 @@ module.exports = async function (hre: HardhatRuntimeEnvironment) {
         args: [nativeDecimalsRate],
         // if set it to true, will not attempt to deploy
         // even if the contract deployed under the same name is different
-        skipIfAlreadyDeployed: false,
+        skipIfAlreadyDeployed: true,
         log: true,
         waitConfirmations: 1,
         // gasPrice: '0',
     })
 }
 
-module.exports.tags = ['ExecutorFeeLib', 'test']
+module.exports.tags = ['ExecutorFeeLib']

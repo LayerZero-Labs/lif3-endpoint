@@ -1,7 +1,10 @@
+import * as fs from 'fs'
+
 import { HardhatRuntimeEnvironment } from 'hardhat/types'
 import 'hardhat-deploy'
 import '@nomiclabs/hardhat-ethers'
 import { Deployment } from 'hardhat-deploy/dist/types'
+
 
 import {
     EndpointVersion,
@@ -13,7 +16,7 @@ import {
 } from '@layerzerolabs/lz-definitions'
 
 import { supportedDVNDeployConfig } from './configs/dvn'
-import { getUltraLightNodeV2Address } from './util'
+import { getDeployedAddress, getDeployedV1Address, getUltraLightNodeV2Address } from './util'
 
 function getConfigForSuffix(stage: string, suffix?: string) {
     if (suffix === undefined) {
@@ -50,7 +53,7 @@ module.exports = async function (hre: HardhatRuntimeEnvironment): Promise<boolea
     const stage = networkToStage(hre.network.name)
     const suffix = process.env.DVNSUFFIX
 
-    const priceFeed = (await deployments.get('PriceFeed')).address
+    const priceFeed = getDeployedV1Address(hre, 'PriceFeed')
 
     console.log(`DVN deployer: ${verifier}`)
     console.log(`PriceFeed address: ${priceFeed}`)
@@ -93,10 +96,7 @@ module.exports = async function (hre: HardhatRuntimeEnvironment): Promise<boolea
 
     // ulnV2
     const ulnV2: string = getUltraLightNodeV2Address(hre)
-    // if (typeof ulnV2 === 'undefined') {
-    //     console.log(`UltraLightNodeV2 not deployed, try UltraLightNodeV2AltToken`)
-    //     ulnV2 = getUltraLightNodeV2AltTokenAddress(hre)
-    // }
+
     if (ulnV2) {
         console.log(`DVN(${hre.network.name}) add UltraLightNodeV2(${ulnV2}) to MessageLibs`)
         messageLibs.push(ulnV2)
@@ -107,27 +107,17 @@ module.exports = async function (hre: HardhatRuntimeEnvironment): Promise<boolea
 
     if (messageLibs.length === 0) throw new Error(`No messageLibs for stage ${stage}`)
 
-    // ======== for local test ========
-    // for local test, add verifierAdmin and verifierSigner1, verifierSigner2
-    // if (networkToEnv(hre.network.name, EndpointVersion.V2) === Environment.LOCAL) {
-    //     const { verifierAdmin, verifierSigner1, verifierSigner2 } = await getNamedAccounts()
-    //     if (typeof verifierAdmin === 'undefined') throw new Error(`verifierAdmin not set in config/keys.yaml`)
-    //     if (typeof verifierSigner1 === 'undefined') throw new Error(`verifierSigner1 not set in config/keys.yaml`)
-    //     if (typeof verifierSigner2 === 'undefined') throw new Error(`verifierSigner2 not set in config/keys.yaml`)
-    //     if (!admins.includes(verifierAdmin)) admins.push(verifierAdmin)
-    //     if (!signers.includes(verifierSigner1)) signers.push(verifierSigner1)
-    //     if (!signers.includes(verifierSigner2)) signers.push(verifierSigner2)
-    // }
     signers = signers.sort((a, b) => a.localeCompare(b))
-    // ======== for local test ========
 
     let name = 'DVN'
     if (suffix !== undefined) {
         name = `${name}${suffix}`
     }
 
-    // vid is good, messagelibs are good, pricefeed is good to go, signers
-    const vid = 10106
+    const configFile = fs.readFileSync('../config.json', 'utf-8')
+    const config = JSON.parse(configFile)
+    const vid = config.endpointV1Id
+
     const args = [vid, messageLibs, priceFeed, signers, quorum, admins]
     console.log(
         'vid, messageLibs, priceFeed, signers, quorom, admins',
@@ -144,12 +134,11 @@ module.exports = async function (hre: HardhatRuntimeEnvironment): Promise<boolea
         args,
         // if set it to true, will not attempt to deploy
         // even if the contract deployed under the same name is different
-        skipIfAlreadyDeployed: false,
+        skipIfAlreadyDeployed: true,
         log: true,
         waitConfirmations: 1,
         // gasPrice: '0',
     })
-    return Promise.resolve(false)
 }
 
-module.exports.tags = ['DVN', 'test']
+module.exports.tags = ['DVN']

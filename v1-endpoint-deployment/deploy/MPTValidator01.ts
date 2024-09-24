@@ -13,7 +13,7 @@ module.exports = async function (hre: HardhatRuntimeEnvironment) {
     // get endpoint from config
     const configFile = fs.readFileSync('../config.json', 'utf-8')
     const config = JSON.parse(configFile)
-    const endpointId = config.endpointId
+    const endpointId = config.endpointV1Id
 
     const bridgeAddr = constants.AddressZero
     const stgAddr = constants.AddressZero
@@ -32,7 +32,7 @@ module.exports = async function (hre: HardhatRuntimeEnvironment) {
         args: [bridgeAddr, stgAddr],
         log: true,
         waitConfirmations: 1,
-        skipIfAlreadyDeployed: false,
+        skipIfAlreadyDeployed: true,
     })
 }
-module.exports.tags = ['MPTValidator01', 'test']
+module.exports.tags = ['MPTValidator01']

@@ -15,7 +15,12 @@ import {
 } from '@layerzerolabs/lz-definitions'
 
 import { EXECUTOR_ADMINS, EXECUTOR_ROLE_ADMIN } from './configs/deployConfig'
-import { getDeployedAddress, getUltraLightNodeV2Address, getUltraLightNodeV2AltTokenAddress } from './util'
+import {
+    getDeployedAddress,
+    getDeployedV1Address,
+    getUltraLightNodeV2Address,
+    getUltraLightNodeV2AltTokenAddress,
+} from './util'
 
 // config
 const ROLE_ADMIN = EXECUTOR_ROLE_ADMIN
@@ -26,11 +31,9 @@ module.exports = async function (hre: HardhatRuntimeEnvironment) {
     const { deployments, getNamedAccounts } = hre
     const { deploy } = deployments
     const { relayer, proxyAdmin, relayerAdmin } = await getNamedAccounts()
-    // invariant(relayer, 'relayer is not set')
+
     console.log(`Executor deployer: ${relayer}`)
-    // invariant(proxyAdmin, 'proxyAdmin is not set')
     console.log(`Executor proxyOwner: ${proxyAdmin}`)
-    // invariant(relayerAdmin, 'relayerAdmin is not set')
     console.log(`Executor admin: ${relayerAdmin}`)
 
     const endpointAddr = getDeployedAddress(hre, 'EndpointV2')
@@ -40,7 +43,8 @@ module.exports = async function (hre: HardhatRuntimeEnvironment) {
     const sendUln301Address = sendUln301.address
     const receiveUln301Address = receiveUln301.address
 
-    const priceFeed: Deployment = await deployments.get('PriceFeed')
+    const priceFeed = getDeployedV1Address(hre, 'PriceFeed')
+    console.log(`PriceFeed: ${priceFeed}`)
     const sendUln302: Deployment = await deployments.get('SendUln302')
     // only 301, 302 are supported
     const messageLibs = [sendUln302.address]
@@ -93,7 +97,7 @@ module.exports = async function (hre: HardhatRuntimeEnvironment) {
             execute: {
                 init: {
                     methodName: 'initialize',
-                    args: [endpointAddr, receiveUln301Address, messageLibs, priceFeed.address, roleAdmin, admins],
+                    args: [endpointAddr, receiveUln301Address, messageLibs, priceFeed, roleAdmin, admins],
                 },
                 onUpgrade: {
                     methodName: 'onUpgrade',
@@ -104,5 +108,5 @@ module.exports = async function (hre: HardhatRuntimeEnvironment) {
     })
 }
 
-module.exports.tags = ['Executor', 'test']
+module.exports.tags = ['Executor']
 module.exports.dependencies = ['PriceFeed', 'ReceiveUln301', 'SendUln301', 'SendUln302']

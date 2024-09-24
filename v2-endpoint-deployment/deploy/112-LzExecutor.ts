@@ -30,7 +30,7 @@ module.exports = async function (hre: HardhatRuntimeEnvironment): Promise<boolea
         log: true,
         waitConfirmations: 1,
         // gasPrice: '0',
-        skipIfAlreadyDeployed: false,
+        skipIfAlreadyDeployed: true,
         proxy: {
             owner: proxyAdmin,
             proxyContract: proxyContract,
@@ -43,7 +43,6 @@ module.exports = async function (hre: HardhatRuntimeEnvironment): Promise<boolea
             },
         },
     })
-    return Promise.resolve(false)
 }
 
 module.exports.tags = ['LzExecutor']

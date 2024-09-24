@@ -6,18 +6,18 @@ import { HardhatRuntimeEnvironment } from 'hardhat/types'
 import { getEndpointV1Address } from './util'
 
 module.exports = async function (hre: HardhatRuntimeEnvironment): Promise<boolean> {
-    const { deploy } = hre.deployments
-    const deployer = `0x462c2AE39B6B0bdB950Deb2BC82082308cF8cB10`
+    const { deployments, getNamedAccounts } = hre
+    const { deploy } = deployments
+    const { deployer } = await getNamedAccounts()
 
     await deploy('TreasuryFeeHandler', {
         from: deployer,
         args: [getEndpointV1Address(hre)],
         log: true,
         waitConfirmations: 1,
-        skipIfAlreadyDeployed: false,
+        skipIfAlreadyDeployed: true,
         // gasPrice: '0',
     })
-    return Promise.resolve(false)
 }
 
-module.exports.tags = ['TreasuryFeeHandler', 'test']
+module.exports.tags = ['TreasuryFeeHandler']

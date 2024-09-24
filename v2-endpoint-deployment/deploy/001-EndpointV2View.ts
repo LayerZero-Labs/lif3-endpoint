@@ -17,11 +17,6 @@ module.exports = async function (hre: HardhatRuntimeEnvironment) {
     const { deployer } = await getNamedAccounts()
     const proxyAdmin = deployer
 
-    const relayer = deployer
-    if (!relayer) {
-        throw new Error('Relayer address is not defined in namedAccounts')
-    }
-
     let endpoint: Deployment
     try {
         endpoint = await deployments.get('EndpointV2')
@@ -36,7 +31,7 @@ module.exports = async function (hre: HardhatRuntimeEnvironment) {
     try {
         await deploy('EndpointV2View', {
             contract: 'contracts/protocol/contracts/EndpointV2View.sol:EndpointV2View',
-            from: relayer,
+            from: deployer,
             log: true,
             waitConfirmations: 1,
             // gasPrice: '0',
@@ -44,7 +39,6 @@ module.exports = async function (hre: HardhatRuntimeEnvironment) {
             skipIfAlreadyDeployed: false,
             proxy: {
                 owner: proxyAdmin,
-                // owner: '0x0804a6e2798F42C7F3c97215DdF958d5500f8ec8',
                 proxyContract: proxyContract,
                 execute: {
                     init: {

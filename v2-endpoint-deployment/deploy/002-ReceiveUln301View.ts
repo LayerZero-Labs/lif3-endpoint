@@ -1,3 +1,4 @@
+import * as fs from 'fs'
 import { HardhatRuntimeEnvironment } from 'hardhat/types'
 import 'hardhat-deploy'
 
@@ -12,11 +13,10 @@ module.exports = async function (hre: HardhatRuntimeEnvironment): Promise<boolea
     const endpointAddr = getDeployedV1Address(hre, 'Endpoint')
     const uln301 = await deployments.get('ReceiveUln301')
 
-    const localChainId = 10106
+    const configFile = fs.readFileSync('../config.json', 'utf-8')
+    const config = JSON.parse(configFile)
+    const localChainId = config.endpointV2Id
 
-    // const proxyContract = isZKSyncBasedChain(networkToChain(hre.network.name))
-    //     ? 'TransparentUpgradeableProxy'
-    //     : 'OptimizedTransparentProxy'
     const proxyContract = 'OptimizedTransparentProxy'
 
     await deploy('ReceiveUln301View', {
@@ -37,7 +37,6 @@ module.exports = async function (hre: HardhatRuntimeEnvironment): Promise<boolea
             },
         },
     })
-    return Promise.resolve(false)
 }
 
 module.exports.tags = ['ReceiveUln301View']

@@ -13,7 +13,7 @@ module.exports = async function (hre: HardhatRuntimeEnvironment) {
     // get endpoint from config
     const configFile = fs.readFileSync('../config.json', 'utf-8')
     const config = JSON.parse(configFile)
-    const endpointId = config.endpointId
+    const endpointId = config.endpointV1Id
 
     await deploy('Endpoint', {
         from: deployer,
@@ -21,10 +21,10 @@ module.exports = async function (hre: HardhatRuntimeEnvironment) {
         args: [endpointId],
         // if set it to true, will not attempt to deploy
         // even if the contract deployed under the same name is different
-        skipIfAlreadyDeployed: false,
+        skipIfAlreadyDeployed: true,
         log: true,
         waitConfirmations: 1,
     })
 }
 
-module.exports.tags = ['Endpoint', 'test']
+module.exports.tags = ['Endpoint']

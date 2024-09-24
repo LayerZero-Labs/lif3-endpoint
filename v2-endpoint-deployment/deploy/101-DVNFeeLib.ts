@@ -6,7 +6,6 @@ import 'hardhat-deploy'
 import '@nomiclabs/hardhat-ethers'
 
 module.exports = async function (hre: HardhatRuntimeEnvironment): Promise<boolean> {
-    // const { deployments, getNamedAccounts, ethers } = hre
     const { deployments } = hre
     const { deploy } = deployments
     const { getNamedAccounts } = hre
@@ -20,7 +19,8 @@ module.exports = async function (hre: HardhatRuntimeEnvironment): Promise<boolea
         name = `${name}${suffix}`
     }
 
-    const nativeDecimalsRate = BigNumber.from('1000000000000000000')
+    // Use 10^18 to represent the native token's decimal places (e.g., 1 ETH = 10^18 wei)
+    const nativeDecimalsRate = BigNumber.from(10).pow(18)
     console.log(`Native Decimals Rate: ${nativeDecimalsRate}`)
 
     await deploy(name, {
@@ -29,12 +29,11 @@ module.exports = async function (hre: HardhatRuntimeEnvironment): Promise<boolea
         args: [nativeDecimalsRate],
         // if set it to true, will not attempt to deploy
         // even if the contract deployed under the same name is different
-        skipIfAlreadyDeployed: false,
+        skipIfAlreadyDeployed: true,
         log: true,
         waitConfirmations: 1,
         // gasPrice: '0'
     })
-    return Promise.resolve(false)
 }
 
-module.exports.tags = ['DVNFeeLib', 'test']
+module.exports.tags = ['DVNFeeLib']

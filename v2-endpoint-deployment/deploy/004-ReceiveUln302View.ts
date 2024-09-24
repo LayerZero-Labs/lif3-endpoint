@@ -33,7 +33,6 @@ module.exports = async function (hre: HardhatRuntimeEnvironment): Promise<boolea
             },
         },
     })
-    return Promise.resolve(false)
 }
 
 module.exports.tags = ['ReceiveUln302View']

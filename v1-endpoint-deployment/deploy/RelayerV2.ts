@@ -26,19 +26,9 @@ module.exports = async function (hre: HardhatRuntimeEnvironment) {
 
     console.log(`[${hre.network.name}] PriceFeed Address: ${priceFeedAddr}`)
 
-    let gasLimit = 5242880 // arcana-testnet is the lowest ive seen @ 5242880 block gasLimit
-    const endpointId = hre.network.name === 'hardhat' ? 1 : networkToEndpointId(hre.network.name, EndpointVersion.V1)
-    if ([10010, 20010].includes(endpointId)) {
-        gasLimit = 30000000 // arbitrum requires >8m
-    }
-
     // by default use whats configured
     const bridgeAddr = hre.ethers.constants.AddressZero
     const composerAddr = hre.ethers.constants.AddressZero
-
-    // print the FINAL bridge and composer address during deployment/upgrade
-    console.log(`[${hre.network.name}] Stargate Bridge Address: ${bridgeAddr}`)
-    console.log(`[${hre.network.name}] Stargate Composer Address: ${composerAddr}`)
 
     const nativeDecimalsRate = getNativeDecimalsRate(hre.network.name)
 
@@ -50,7 +40,7 @@ module.exports = async function (hre: HardhatRuntimeEnvironment) {
         // gasPrice: '0',
         log: true,
         waitConfirmations: 1,
-        // skipIfAlreadyDeployed: true, // if you set to true, it cant/wont upgrade
+        skipIfAlreadyDeployed: false, // if you set to true, it cant/wont upgrade
         proxy: {
             owner: proxyAdmin,
             proxyContract: 'OptimizedTransparentProxy',
@@ -68,5 +58,5 @@ module.exports = async function (hre: HardhatRuntimeEnvironment) {
     })
 }
 
-module.exports.tags = ['RelayerV2', 'test', 'v2']
+module.exports.tags = ['RelayerV2']
 module.exports.dependencies = ['UltraLightNodeV2']

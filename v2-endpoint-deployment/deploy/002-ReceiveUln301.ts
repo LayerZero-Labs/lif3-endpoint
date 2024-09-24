@@ -1,3 +1,4 @@
+import * as fs from 'fs'
 import '@nomiclabs/hardhat-ethers'
 import 'hardhat-deploy'
 
@@ -18,19 +19,20 @@ module.exports = async function (hre: HardhatRuntimeEnvironment): Promise<boolea
     const { getNamedAccounts } = hre
     const { deployer } = await getNamedAccounts()
 
-    const localChainId = 10106
+    const configFile = fs.readFileSync('../config.json', 'utf-8')
+    const config = JSON.parse(configFile)
+    const localChainId = config.endpointV2Id
 
     await deploy('ReceiveUln301', {
         from: deployer,
         args: [getEndpointV1Address(hre), localChainId],
         // if set it to true, will not attempt to deploy
         // even if the contract deployed under the same name is different
-        skipIfAlreadyDeployed: false,
+        skipIfAlreadyDeployed: true,
         log: true,
         waitConfirmations: 1,
         // gasPrice: '0',
     })
-    return Promise.resolve(false)
 }
 
-module.exports.tags = ['ReceiveUln301', 'test']
+module.exports.tags = ['ReceiveUln301']
