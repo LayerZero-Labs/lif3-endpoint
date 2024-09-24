@@ -41,7 +41,3 @@ module.exports = async function (hre: HardhatRuntimeEnvironment): Promise<boolea
 
 module.exports.tags = ['ReceiveUln301View']
 module.exports.dependencies = ['ReceiveUln301']
-// module.exports.skip = async ({ network }: HardhatRuntimeEnvironment) =>
-//     new Promise((resolve) => {
-//         resolve(ALT_TOKEN_CHAINS.includes(networkToChain(network.name)))
-//     })

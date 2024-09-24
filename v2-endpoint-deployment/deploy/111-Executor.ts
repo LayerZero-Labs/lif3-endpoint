@@ -7,7 +7,6 @@ import '@nomiclabs/hardhat-ethers'
 import {
     EndpointVersion,
     Environment,
-    isNetworkEndpointIdSupported,
     isZKSyncBasedChain,
     networkToChain,
     networkToEnv,

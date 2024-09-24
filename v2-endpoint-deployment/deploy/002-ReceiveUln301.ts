@@ -4,14 +4,6 @@ import 'hardhat-deploy'
 
 import { HardhatRuntimeEnvironment } from 'hardhat/types'
 
-import {
-    EndpointVersion,
-    isNetworkEndpointIdSupported,
-    networkToChain,
-    networkToEndpointId,
-} from '@layerzerolabs/lz-definitions'
-// import { ALT_TOKEN_CHAINS } from '@layerzerolabs/ops-definitions-layerzero'
-
 import { getEndpointV1Address } from './util'
 
 module.exports = async function (hre: HardhatRuntimeEnvironment): Promise<boolean> {

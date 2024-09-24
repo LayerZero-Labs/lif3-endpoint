@@ -2,8 +2,6 @@ import { HardhatRuntimeEnvironment } from 'hardhat/types'
 import 'hardhat-deploy'
 import { Deployment } from 'hardhat-deploy/dist/types'
 
-// import { isZKSyncBasedChain, networkToChain } from '@layerzerolabs/lz-definitions'
-// import { ALT_TOKEN_CHAINS } from '@layerzerolabs/ops-definitions-layerzero'
 const hre = require('hardhat')
 
 function getDependencies(): string[] {

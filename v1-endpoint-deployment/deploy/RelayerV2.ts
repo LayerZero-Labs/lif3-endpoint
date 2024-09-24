@@ -4,7 +4,7 @@ import 'hardhat-deploy'
 import { ethers } from 'ethers'
 import { HardhatRuntimeEnvironment } from 'hardhat/types'
 
-import { Chain, EndpointVersion, networkToChain, networkToEndpointId } from '@layerzerolabs/lz-definitions'
+import { Chain, networkToChain } from '@layerzerolabs/lz-definitions'
 
 import { getPriceFeedV2Address } from './utils'
 
