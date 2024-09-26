@@ -24,8 +24,6 @@ LayerZero Endpoint for Lif3
 
    Replace "Your mnemonic phrase here" with the actual mnemonic phrase of your deployer. This command will create `.env` files in the endpoint directories.
 
-3. Your environment is now set up and ready to use.
-
 ## Deployment:
 
 In `config.json` set the following values:
