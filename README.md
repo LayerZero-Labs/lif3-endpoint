@@ -13,7 +13,7 @@ Lif3's LayerZero Endpoint
 
 1. Clone the repository:
    ```
-   git clone https://github.com/your-username/lif3-endpoint.git
+   git clone https://github.com/LayerZero-Labs/lif3-endpoint.git
    cd lif3-endpoint
    ```
 
