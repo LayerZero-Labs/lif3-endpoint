@@ -47,7 +47,7 @@ run:
 `pnpm install`
 
 ```
-npx hardhat deploy --network <your network> --tags PriceFeed,FPValidator,MPTValidator01,NonceContract,UltraLightNodeV2,TreasuryV2,RelayerV2
+npx hardhat deploy --network <your network name> --tags PriceFeed,FPValidator,MPTValidator01,NonceContract,UltraLightNodeV2,TreasuryV2,RelayerV2
 ```
 
 ### V2 Endpoint:
@@ -57,13 +57,13 @@ run:
 `pnpm install`
 
 ```
-npx hardhat deploy --network <your network> --tags EndpointV2,EndpointV2View,Treasury,SendUln302,ReceiveUln302,ReceiveUln302View,TreasuryFeeHandler,SendUln301,ReceiveUln301,ReceiveUln301View,PriceFeed
+npx hardhat deploy --network <your network name> --tags EndpointV2,EndpointV2View,Treasury,SendUln302,ReceiveUln302,ReceiveUln302View,TreasuryFeeHandler,SendUln301,ReceiveUln301,ReceiveUln301View,PriceFeed
 ```
 Deploy DVNFeeLib and DVN
 ```
-npx hardhat deploy --network <your network> --tags DVNFeeLib,DVN
+npx hardhat deploy --network <your network name> --tags DVNFeeLib,DVN
 ```
 Deploy Executor
 ```
-npx hardhat deploy --network <your network> --tags ExecutorFeeLib,Executor,LzExecutor
+npx hardhat deploy --network <your network name> --tags ExecutorFeeLib,Executor,LzExecutor
 ```
