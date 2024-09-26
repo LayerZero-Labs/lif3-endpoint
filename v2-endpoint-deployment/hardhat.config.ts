@@ -4,14 +4,14 @@
 // - Duplicate .env.example file and name it .env
 // - Fill in the environment variables
 import 'dotenv/config'
+import { readFileSync } from 'fs'
+import { join } from 'path'
 
 import 'hardhat-deploy'
 import 'hardhat-contract-sizer'
 import '@nomiclabs/hardhat-ethers'
 import '@layerzerolabs/toolbox-hardhat'
 import { HardhatUserConfig, HttpNetworkAccountsUserConfig } from 'hardhat/types'
-
-import { EndpointId } from '@layerzerolabs/lz-definitions'
 
 // Set your preferred authentication method
 //
@@ -34,6 +34,11 @@ if (accounts == null) {
     )
 }
 
+// Read config.json
+const configPath = join(__dirname, '..', 'config.json')
+const configJson = JSON.parse(readFileSync(configPath, 'utf-8'))
+const networkName = configJson.networkName
+
 const config: HardhatUserConfig = {
     paths: {
         cache: 'cache/hardhat',
@@ -52,9 +57,9 @@ const config: HardhatUserConfig = {
         ],
     },
     networks: {
-        'avalanche-testnet': {
-            eid: EndpointId.AVALANCHE_V2_TESTNET,
-            url: process.env.RPC_URL_FUJI || 'https://rpc.ankr.com/avalanche_fuji',
+        [networkName]: {
+            eid: configJson.endpointV2Id,
+            url: configJson.rpcUrl,
             accounts,
         },
     },

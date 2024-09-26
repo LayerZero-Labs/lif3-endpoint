@@ -30,18 +30,12 @@ Note: Make sure to keep your mnemonic secure and never share it publicly.
 
 ## Deployment:
 
-In `config.json` set endpointV1Id to your desired number.
-
-Also make sure to do adjust the hardhat configs accordingly based on your needs. It's currently setup to deploy everything to avalanche-testnet.
-You should only need to modify networks
+In `config.json` set the following values:
 ```
-    networks: {
-        'avalanche-testnet': {
-            eid: endpointV1Id.AVALANCHE_V2_TESTNET,
-            url: process.env.RPC_URL_FUJI || 'https://rpc.ankr.com/avalanche_fuji',
-            accounts,
-        },
-    },
+    "endpointV1Id": <your endpoint id for v1>,
+    "endpointV2Id": <your endpoint id for v2>,
+    "rpcUrl": "<your rpc url>",
+    "networkName": "<your network name>",
 ```
 
 ### V1 Endpoint:
@@ -53,7 +47,7 @@ run:
 Note: this is setup to use avalanche-testnet. These can be easily switched to any network by doing a search and replace on this README.md
 
 ```
-npx hardhat deploy --network avalanche-testnet --tags PriceFeed,FPValidator,MPTValidator01,NonceContract,UltraLightNodeV2,TreasuryV2,RelayerV2
+npx hardhat deploy --network <your network> --tags PriceFeed,FPValidator,MPTValidator01,NonceContract,UltraLightNodeV2,TreasuryV2,RelayerV2
 ```
 
 
@@ -64,13 +58,13 @@ run:
 `pnpm install`
 
 ```
-npx hardhat deploy --network avalanche-testnet --tags EndpointV2,EndpointV2View,Treasury,SendUln302,ReceiveUln302,ReceiveUln302View,TreasuryFeeHandler,SendUln301,ReceiveUln301,ReceiveUln301View,PriceFeed
+npx hardhat deploy --network <your network> --tags EndpointV2,EndpointV2View,Treasury,SendUln302,ReceiveUln302,ReceiveUln302View,TreasuryFeeHandler,SendUln301,ReceiveUln301,ReceiveUln301View,PriceFeed
 ```
 Deploy DVNFeeLib and DVN
 ```
-npx hardhat deploy --network avalanche-testnet --tags DVNFeeLib,DVN
+npx hardhat deploy --network <your network> --tags DVNFeeLib,DVN
 ```
 Deploy Executor
 ```
-npx hardhat deploy --network avalanche-testnet --tags ExecutorFeeLib,Executor,LzExecutor
+npx hardhat deploy --network <your network> --tags ExecutorFeeLib,Executor,LzExecutor
 ```
