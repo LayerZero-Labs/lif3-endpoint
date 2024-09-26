@@ -1,7 +1,7 @@
 import * as fs from 'fs'
 
 import { HardhatRuntimeEnvironment } from 'hardhat/types'
-import { DeployFunction, Deployment } from 'hardhat-deploy/types'
+import { DeployFunction } from 'hardhat-deploy/types'
 import '@nomiclabs/hardhat-ethers'
 import 'hardhat-deploy'
 

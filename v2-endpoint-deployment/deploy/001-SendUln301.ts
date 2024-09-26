@@ -1,15 +1,15 @@
 import '@nomiclabs/hardhat-ethers'
 import 'hardhat-deploy'
 
+import * as fs from 'fs'
+
 import { HardhatRuntimeEnvironment } from 'hardhat/types'
 
 import { EndpointVersion, Environment, networkToEnv } from '@layerzerolabs/lz-definitions'
 
 import { getEndpointV1Address, tryGetDeployedV1Address } from './util'
 
-import * as fs from 'fs';
-
-module.exports = async function (hre: HardhatRuntimeEnvironment): Promise<boolean> {
+module.exports = async function (hre: HardhatRuntimeEnvironment) {
     const { deploy } = hre.deployments
     const { getNamedAccounts } = hre
     const { deployer } = await getNamedAccounts()

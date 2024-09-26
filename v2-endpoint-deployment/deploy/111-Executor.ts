@@ -1,30 +1,18 @@
+import fs from 'fs'
+
 import { HardhatRuntimeEnvironment } from 'hardhat/types'
 import { Deployment } from 'hardhat-deploy/dist/types'
+import invariant from 'tiny-invariant'
 // import invariant from 'tiny-invariant'
 import 'hardhat-deploy'
 import '@nomiclabs/hardhat-ethers'
 
-import {
-    EndpointVersion,
-    Environment,
-    isZKSyncBasedChain,
-    networkToChain,
-    networkToEnv,
-    networkToStage,
-} from '@layerzerolabs/lz-definitions'
-
-import { EXECUTOR_ADMINS, EXECUTOR_ROLE_ADMIN } from './configs/deployConfig'
 import {
     getDeployedAddress,
     getDeployedV1Address,
     getUltraLightNodeV2Address,
     getUltraLightNodeV2AltTokenAddress,
 } from './util'
-
-// config
-const ROLE_ADMIN = EXECUTOR_ROLE_ADMIN
-
-const ADMINS = EXECUTOR_ADMINS
 
 module.exports = async function (hre: HardhatRuntimeEnvironment) {
     const { deployments, getNamedAccounts } = hre
@@ -62,23 +50,16 @@ module.exports = async function (hre: HardhatRuntimeEnvironment) {
         console.log(`UltraLightNodeV2 and UltraLightNodeV2AltToken both not deployed, skip`)
     }
     console.log(`executor messageLibs: ${messageLibs}`)
-
-    const stage = networkToStage(hre.network.name)
-    let roleAdmin = ROLE_ADMIN[stage]
-    const admins = [...ADMINS[stage]]
+    // get the config from ../config.json
+    const config = JSON.parse(fs.readFileSync('../config.json', 'utf-8'))
+    const roleAdmin = config.executorRoleAdmin
+    const admins = config.admins
     admins.push(relayerAdmin)
 
-    // for local test
-    if (networkToEnv(hre.network.name, EndpointVersion.V2) === Environment.LOCAL) {
-        const { relayerRoleAdmin } = await getNamedAccounts()
-        roleAdmin = relayerRoleAdmin
-    }
-    // invariant(roleAdmin, 'roleAdmin is not set')
+    invariant(roleAdmin, 'roleAdmin is not set')
     console.log(`Executor roleAdmin: ${roleAdmin}`)
 
-    const proxyContract = isZKSyncBasedChain(networkToChain(hre.network.name))
-        ? 'TransparentUpgradeableProxy'
-        : 'OptimizedTransparentProxy'
+    const proxyContract = 'OptimizedTransparentProxy'
 
     console.log(`[${hre.network.name}] Executor proxyContract: ${proxyContract}`)
 

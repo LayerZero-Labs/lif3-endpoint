@@ -36,10 +36,11 @@ In `config.json` set the following values:
     "endpointV2Id": <your endpoint id for v2>,
     "rpcUrl": "<your rpc url>",
     "networkName": "<your network name>",
+    "stage": "<your network stage (mainnet, testnet, sandbox)>",
     "treasuryGasLimit": <your treasury gas limit>,
     "treasuryGasForFeeCap": <your treasury gas for fee cap>
 ```
-Note: The treasury fields will be converted to 10**18 using ethers.utils.parseEther()
+> Note: The treasury fields will be converted to 10**18 using ethers.utils.parseEther()
 
 ### V1 Endpoint:
 cd to `v1-endpoint-deployment`

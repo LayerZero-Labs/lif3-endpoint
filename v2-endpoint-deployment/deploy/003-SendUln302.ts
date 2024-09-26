@@ -9,7 +9,7 @@ import { getDeployedAddress } from './util'
 
 // config
 
-module.exports = async function (hre: HardhatRuntimeEnvironment): Promise<boolean> {
+module.exports = async function (hre: HardhatRuntimeEnvironment) {
     const { deploy } = hre.deployments
     const { getNamedAccounts } = hre
     const { deployer } = await getNamedAccounts()

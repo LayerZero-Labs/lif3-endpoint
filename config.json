@@ -1,9 +1,13 @@
 {
     "endpointV1Id": null,
     "endpointV2Id": null,
-    "rpcUrl": null,
+    "rpcUrl":  null,
     "networkName": null,
-    "_comment": "Treasury fields will be converted to 10**18 using ethers.utils.parseEther()",
+    "_comment0": "stages can be mainnet, testnet, sandbox",
+    "stage": null,
+    "executorRoleAdmin": "0x9F403140Bc0574D7d36eA472b82DAa1Bbd4eF327",
+    "admins": ["0xe93685f3bBA03016F02bD1828BaDD6195988D950","0x339d413CCEfD986b1B3647A9cfa9CBbE70A30749","0x9F403140Bc0574D7d36eA472b82DAa1Bbd4eF327"],
+    "_comment1": "Treasury fields will be converted to 10**18 using ethers.utils.parseEther()",
     "treasuryGasLimit": null,
     "treasuryGasForFeeCap": null
 }

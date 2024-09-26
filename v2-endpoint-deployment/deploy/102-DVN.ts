@@ -5,22 +5,9 @@ import 'hardhat-deploy'
 import '@nomiclabs/hardhat-ethers'
 import { Deployment } from 'hardhat-deploy/dist/types'
 
-import { EndpointVersion, isNetworkEndpointIdSupported, networkToStage } from '@layerzerolabs/lz-definitions'
+import { EndpointVersion, isNetworkEndpointIdSupported } from '@layerzerolabs/lz-definitions'
 
-import { supportedDVNDeployConfig } from './configs/dvn'
 import { getDeployedV1Address, getUltraLightNodeV2Address } from './util'
-
-function getConfigForSuffix(stage: string, suffix?: string) {
-    if (suffix === undefined) {
-        suffix = 'default'
-    }
-    suffix = suffix.toLowerCase()
-    const config = supportedDVNDeployConfig[stage][suffix]
-    if (typeof config === 'undefined') {
-        throw new Error(`No config found for Stage: ${stage} Suffix: ${suffix}`)
-    }
-    return config
-}
 
 // This is the mainnet default config
 const config = {
@@ -38,11 +25,14 @@ const config = {
     // default price feed
 }
 
-module.exports = async function (hre: HardhatRuntimeEnvironment): Promise<boolean> {
+module.exports = async function (hre: HardhatRuntimeEnvironment) {
     const { deployments, getNamedAccounts } = hre
     const { deploy } = deployments
     const { verifier } = await getNamedAccounts()
-    const stage = networkToStage(hre.network.name)
+    const configFile = fs.readFileSync('../config.json', 'utf-8')
+    const endpointConfig = JSON.parse(configFile)
+    const vid = endpointConfig.endpointV1Id
+    const stage = endpointConfig.stage
     const suffix = process.env.DVNSUFFIX
 
     const priceFeed = getDeployedV1Address(hre, 'PriceFeed')
@@ -105,10 +95,6 @@ module.exports = async function (hre: HardhatRuntimeEnvironment): Promise<boolea
     if (suffix !== undefined) {
         name = `${name}${suffix}`
     }
-
-    const configFile = fs.readFileSync('../config.json', 'utf-8')
-    const config = JSON.parse(configFile)
-    const vid = config.endpointV1Id
 
     const args = [vid, messageLibs, priceFeed, signers, quorum, admins]
     console.log(

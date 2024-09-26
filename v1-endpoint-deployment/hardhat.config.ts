@@ -52,6 +52,10 @@ const config: HardhatUserConfig = {
         ],
     },
     networks: {
+        hardhat: {
+            live: false,
+            saveDeployments: true,
+        },
         [networkName]: {
             eid: configJson.endpointV1Id,
             url: configJson.rpcUrl,
