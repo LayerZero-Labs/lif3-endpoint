@@ -55,6 +55,7 @@ cd to `v2-endpoint-deployment`
 run:
 `pnpm install`
 
+Deploy EndpointV2 Contrats:
 ```
 npx hardhat deploy --network <your network name> --tags EndpointV2,EndpointV2View,Treasury,SendUln302,ReceiveUln302,ReceiveUln302View,TreasuryFeeHandler,SendUln301,ReceiveUln301,ReceiveUln301View,PriceFeed
 ```
