@@ -26,8 +26,6 @@ Lif3's LayerZero Endpoint
 
 3. Your environment is now set up and ready to use.
 
-Note: Make sure to keep your mnemonic secure and never share it publicly.
-
 ## Deployment:
 
 In `config.json` set the following values:
@@ -48,12 +46,9 @@ cd to `v1-endpoint-deployment`
 run:
 `pnpm install`
 
-Note: this is setup to use avalanche-testnet. These can be easily switched to any network by doing a search and replace on this README.md
-
 ```
 npx hardhat deploy --network <your network> --tags PriceFeed,FPValidator,MPTValidator01,NonceContract,UltraLightNodeV2,TreasuryV2,RelayerV2
 ```
-
 
 ### V2 Endpoint:
 cd to `v2-endpoint-deployment`
