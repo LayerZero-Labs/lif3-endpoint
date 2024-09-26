@@ -44,6 +44,7 @@ cd to `v1-endpoint-deployment`
 run:
 `pnpm install`
 
+Deploy EndpointV1 Contrats:
 ```
 npx hardhat deploy --network <your network name> --tags PriceFeed,FPValidator,MPTValidator01,NonceContract,UltraLightNodeV2,TreasuryV2,RelayerV2
 ```
@@ -57,11 +58,11 @@ run:
 ```
 npx hardhat deploy --network <your network name> --tags EndpointV2,EndpointV2View,Treasury,SendUln302,ReceiveUln302,ReceiveUln302View,TreasuryFeeHandler,SendUln301,ReceiveUln301,ReceiveUln301View,PriceFeed
 ```
-Deploy DVNFeeLib and DVN
+Deploy DVNFeeLib and DVN:
 ```
 npx hardhat deploy --network <your network name> --tags DVNFeeLib,DVN
 ```
-Deploy Executor
+Deploy Executor:
 ```
 npx hardhat deploy --network <your network name> --tags ExecutorFeeLib,Executor,LzExecutor
 ```
