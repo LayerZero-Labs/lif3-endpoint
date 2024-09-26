@@ -1,9 +1,9 @@
 {
-    "endpointV1Id": 205,
-    "endpointV2Id": 30205,
-    "rpcUrl":null,
-    "networkName": "<your network>",
+    "endpointV1Id": null,
+    "endpointV2Id": null,
+    "rpcUrl": null,
+    "networkName": null,
     "_comment": "Treasury fields will be converted to 10**18 using ethers.utils.parseEther()",
-    "treasuryGasLimit": 0.00002,
-    "treasuryGasForFeeCap": 0.00001
+    "treasuryGasLimit": null,
+    "treasuryGasForFeeCap": null
 }

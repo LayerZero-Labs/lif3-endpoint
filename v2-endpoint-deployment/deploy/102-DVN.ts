@@ -5,18 +5,10 @@ import 'hardhat-deploy'
 import '@nomiclabs/hardhat-ethers'
 import { Deployment } from 'hardhat-deploy/dist/types'
 
-
-import {
-    EndpointVersion,
-    Environment,
-    isNetworkEndpointIdSupported,
-    networkToEndpointId,
-    networkToEnv,
-    networkToStage,
-} from '@layerzerolabs/lz-definitions'
+import { EndpointVersion, isNetworkEndpointIdSupported, networkToStage } from '@layerzerolabs/lz-definitions'
 
 import { supportedDVNDeployConfig } from './configs/dvn'
-import { getDeployedAddress, getDeployedV1Address, getUltraLightNodeV2Address } from './util'
+import { getDeployedV1Address, getUltraLightNodeV2Address } from './util'
 
 function getConfigForSuffix(stage: string, suffix?: string) {
     if (suffix === undefined) {
