@@ -1,4 +1,4 @@
-# Lif3-endpoint
+# Lif3 Endpoint
 LayerZero Endpoint for Lif3
 
 ---
