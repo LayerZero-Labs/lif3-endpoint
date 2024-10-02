@@ -3,7 +3,7 @@ import 'hardhat-deploy'
 
 import { HardhatRuntimeEnvironment } from 'hardhat/types'
 
-module.exports = async function (hre: HardhatRuntimeEnvironment): Promise<boolean> {
+module.exports = async function (hre: HardhatRuntimeEnvironment) {
     const { deployments, getNamedAccounts } = hre
     const { deploy } = deployments
     const { deployer } = await getNamedAccounts()
@@ -16,7 +16,6 @@ module.exports = async function (hre: HardhatRuntimeEnvironment): Promise<boolea
         skipIfAlreadyDeployed: true,
         // gasPrice: '0',
     })
-    return Promise.resolve(false)
 }
 
 module.exports.tags = ['ProxyAdmin']

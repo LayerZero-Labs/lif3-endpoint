@@ -6,7 +6,7 @@ import { HardhatRuntimeEnvironment } from 'hardhat/types'
 
 import { getEndpointV1Address } from './util'
 
-module.exports = async function (hre: HardhatRuntimeEnvironment): Promise<boolean> {
+module.exports = async function (hre: HardhatRuntimeEnvironment) {
     const { deploy } = hre.deployments
     const { getNamedAccounts } = hre
     const { deployer } = await getNamedAccounts()

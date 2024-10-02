@@ -3,7 +3,7 @@ import 'hardhat-deploy'
 
 import { getDeployedAddress } from './util'
 
-module.exports = async function (hre: HardhatRuntimeEnvironment): Promise<boolean> {
+module.exports = async function (hre: HardhatRuntimeEnvironment) {
     const { deployments, getNamedAccounts } = hre
     const { deploy } = deployments
     const { deployer } = await getNamedAccounts()

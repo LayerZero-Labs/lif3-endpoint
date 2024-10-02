@@ -5,7 +5,7 @@ const { BigNumber } = require('ethers')
 import 'hardhat-deploy'
 import '@nomiclabs/hardhat-ethers'
 
-module.exports = async function (hre: HardhatRuntimeEnvironment): Promise<boolean> {
+module.exports = async function (hre: HardhatRuntimeEnvironment) {
     const { deployments } = hre
     const { deploy } = deployments
     const { getNamedAccounts } = hre
